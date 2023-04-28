@@ -1,2 +1,3 @@
-# image-recommender-based-on-emotion
-It is a reommender system for images based on emotion.
+# 감성 이미지 추천
+
+여기서는 사용자의 감정에 따라 이미지를 추천하는 시스템 아키텍처를 소개합니다. 
