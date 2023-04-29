@@ -796,7 +796,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // UTIL: CSV generator
-    const lambdaGenerateCSV = new lambda.Function(this, "lambda-generate-csv", {
+/*    const lambdaGenerateCSV = new lambda.Function(this, "lambda-generate-csv", {
       runtime: lambda.Runtime.NODEJS_16_X,
       functionName: "lambda-generate-csv",
       code: lambda.Code.fromAsset("../utils/lambda-generate-csv"),
@@ -813,7 +813,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     s3Bucket.grantReadWrite(lambdaGenerateCSV);
     interactionDataTable.grantReadWriteData(lambdaGenerateCSV);
     itemDataTable.grantReadWriteData(lambdaGenerateCSV);
-    userDataTable.grantReadWriteData(lambdaGenerateCSV); // permission for dynamo    
+    userDataTable.grantReadWriteData(lambdaGenerateCSV); // permission for dynamo    */
 
     new cdk.CfnOutput(this, 'apiUrl-image-recommender', {
       value: api.url,
