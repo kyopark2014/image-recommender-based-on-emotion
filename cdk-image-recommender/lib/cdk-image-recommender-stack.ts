@@ -443,7 +443,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         bucketName: s3Bucket.bucketName,
-        datasetArn: userDataset.attrDatasetArn,
+      //  datasetArn: userDataset.attrDatasetArn,
         userTableName: userTableName
       }
     });
@@ -826,7 +826,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         //datasetArn: interactionDataset.attrDatasetArn,
-        userDatasetArn: userDataset.attrDatasetArn,
+      //  userDatasetArn: userDataset.attrDatasetArn,
         userTableName: userTableName,
         tableName: tableName,
         indexName: indexName,
