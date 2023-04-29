@@ -831,9 +831,10 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         indexName: indexName,
         interactionTableName: interactionTableName,
       }
-    });
+    });    
     interactionDataTable.grantReadWriteData(lambdaGenerateDataset);
-    userDataTable.grantReadWriteData(lambdaGenerateDataset); // permission for dynamo    
+    userDataTable.grantReadWriteData(lambdaGenerateDataset); 
+    dataTable.grantReadWriteData(lambdaGenerateDataset); // permission for dynamo 
     lambdaGenerateDataset.role?.attachInlinePolicy(
       new iam.Policy(this, 'personalize-policy-for-lambda-generate-dataset', {
         statements: [PersonalizePolicy],

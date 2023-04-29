@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const personalizeevents = new aws.PersonalizeEvents();
 
-const userDatasetArn = process.env.datasetArn;
+const userDatasetArn = process.env.userDatasetArn;
 const userTableName = process.env.userTableName;
 const dynamo = new aws.DynamoDB.DocumentClient();
 
