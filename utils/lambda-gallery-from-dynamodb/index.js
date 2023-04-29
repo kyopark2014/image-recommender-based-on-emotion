@@ -2,7 +2,7 @@ const aws = require('aws-sdk');
 const dynamo = new aws.DynamoDB.DocumentClient();
 const tableName = process.env.tableName;
 const indexName = process.env.indexName;
-const domainName = process.env.domainName;
+// const domainName = process.env.domainName;
 
 exports.handler = async (event, context) => {
     console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
@@ -49,7 +49,8 @@ exports.handler = async (event, context) => {
         console.log('timestamp: ', timestamp);
         console.log('emotion: ', emotion);
         
-        const url = 'https://'+domainName+'/'+objKey;
+        // const url = 'https://'+domainName+'/'+objKey;
+        const url = objKey;
         // console.log('url: ', url);
 
         const imgProfile = {

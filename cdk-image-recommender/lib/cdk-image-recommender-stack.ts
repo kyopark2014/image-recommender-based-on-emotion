@@ -21,7 +21,7 @@ const endpoints = [
   "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
 ]
 const nproc = 1;
-const cloudFrontDomain = "d14j04tdmh4c1d.cloudfront.net";
+// const cloudFrontDomain = "d14j04tdmh4c1d.cloudfront.net";
 
 export class CdkImageRecommenderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -502,7 +502,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(10),
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
-        domainName: cloudFrontDomain,
         campaignArn: "arn:aws:personalize:ap-northeast-1:677146750822:campaign/image-recommender-campaign"
       }
     });
@@ -604,7 +603,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       environment: {
         tableName: tableName,
         indexName: indexName,
-        domainName: cloudFrontDomain,
       }
     });
     dataTable.grantReadWriteData(lambdagalleryFromDynamoDB); // permission for dynamo 
@@ -688,7 +686,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       environment: {
         tableName: imgPoolTableName,
         indexName: imgPoolIndexName,
-        domainName: cloudFrontDomain,
+        // domainName: cloudFrontDomain,
       }
     });
     imgPoolDataTable.grantReadWriteData(lambdaRetrieve); // permission for dynamo 
