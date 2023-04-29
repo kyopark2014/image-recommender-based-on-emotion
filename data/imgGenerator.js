@@ -1,8 +1,6 @@
-const cloudfrntUrl = "https://d14j04tdmh4c1d.cloudfront.net/";
-
-const bulkUrl = cloudfrntUrl+"bulk";
-const removeUrl = cloudfrntUrl+"remove";
-const clearIndexUrl = cloudfrntUrl + "clearIndex";
+const bulkUrl = "bulk";
+const removeUrl = "remove";
+const clearIndexUrl = "clearIndex";
 
 let selectedEmotion = document.getElementById("emoitonId");
 let profileInfo_emotion = document.getElementById('status');
@@ -112,7 +110,7 @@ form.elements.remove.onclick = function () {
     let dislike = [];
     for (let i=0;i<repeatCount*2;i++) {
         if(!likeList[i] && !deletedList[i]) {            
-            console.log(`${cloudfrntUrl+fileList[i]} will be removed.`);
+            console.log(`${fileList[i]} will be removed.`);
 
             dislike.push(fileList[i]);
 
@@ -164,7 +162,7 @@ form.elements.update.onclick = function () {
         let htmlsrc;
 
         let index = i;            
-        previewUrl = cloudfrntUrl+fname+'_'+index+'h.jpeg';
+        previewUrl = fname+'_'+index+'h.jpeg';
         id = fname+'_'+index+'h';
 
         fileList[i] = fname+'_'+index+'h.jpeg';
