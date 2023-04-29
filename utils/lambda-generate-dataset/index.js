@@ -103,9 +103,12 @@ exports.handler = async (event, context) => {
     let date = new Date();
     const timestamp = date.getTime();
     console.log('timestamp: ', timestamp);
-
+    
     for(let i in dynamoQuery['Items']) {    
         let itemId = dynamoQuery['Items'][i]['ObjKey'];
+
+        let impression = [];
+        impression.push(itemId);
 
         // put event dataset
         try {
@@ -118,7 +121,7 @@ exports.handler = async (event, context) => {
                     sentAt: timestamp,
                     eventId: uuidv4(),
                     itemId: itemId,
-                    impression: {},
+                    impression: impression,
                 }],
             };
             console.log('event params: ', JSON.stringify(params));
