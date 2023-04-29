@@ -117,7 +117,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     }
 
     // Lambda - bulk
-/*    const lambdaBulk = new lambda.Function(this, "lambdaBulk", {
+    const lambdaBulk = new lambda.Function(this, "lambdaBulk", {
       runtime: lambda.Runtime.NODEJS_16_X,
       functionName: "lambda-bulk",
       code: lambda.Code.fromAsset("../lambda-bulk"),
@@ -163,7 +163,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // Lambda for bulk-stable-diffusion    
-    const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
+/*    const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
       actions: ['sagemaker:*'],
       resources: ['*'],
     });
