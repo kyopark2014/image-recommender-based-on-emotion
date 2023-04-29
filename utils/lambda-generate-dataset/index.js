@@ -118,7 +118,7 @@ exports.handler = async (event, context) => {
                     sentAt: timestamp,
                     eventId: uuidv4(),
                     itemId: itemId,
-                    impression: "",
+                    impression: {},
                 }],
             };
             console.log('event params: ', JSON.stringify(params));
