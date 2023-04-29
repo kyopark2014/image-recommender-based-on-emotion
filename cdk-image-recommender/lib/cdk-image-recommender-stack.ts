@@ -282,7 +282,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       schemaArn: interactionSchema.attrSchemaArn,
     });
 
-  /*  const userSchemaJson = `{
+    const userSchemaJson = `{
       "type": "record",
       "name": "Users",
       "namespace": "com.amazonaws.personalize.schema",
@@ -309,7 +309,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     //  "type": "string",
     //  "categorical": true
     // }
-
+    
     const userSchema = new personalize.CfnSchema(this, 'UserSchema', {
       name: 'image-recommender-user-schema',
       schema: userSchemaJson,
@@ -320,7 +320,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       datasetType: 'Users',
       name: 'image-recommender-user-dataset',
       schemaArn: userSchema.attrSchemaArn,
-    });*/
+    });
 
     const itemSchemaJson = `{
       "type": "record",
@@ -443,7 +443,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         bucketName: s3Bucket.bucketName,
-      //  datasetArn: userDataset.attrDatasetArn,
+        datasetArn: userDataset.attrDatasetArn,
         userTableName: userTableName
       }
     });
@@ -826,7 +826,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         //datasetArn: interactionDataset.attrDatasetArn,
-      //  userDatasetArn: userDataset.attrDatasetArn,
+        userDatasetArn: userDataset.attrDatasetArn,
         userTableName: userTableName,
         tableName: tableName,
         indexName: indexName,
