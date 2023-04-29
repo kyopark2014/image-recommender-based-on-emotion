@@ -6,7 +6,7 @@
 
 ![noname](https://user-images.githubusercontent.com/52392004/235278681-5981b545-0cb0-46a8-b2ea-e9c13a2b4ff4.png)
 
-아래와 같이 터미널을 Open합니다. 
+[Environment]에서 "Image Generator"를 [Open]한 후에 아래와 같이 터미널을 실행합니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/226772282-4964a05a-5b88-4f0a-81bc-2af208c880b1.png)
 
@@ -16,13 +16,13 @@
 소스를 다운로드 합니다.
 
 ```java
-git clone https://github.com/kyopark2014/emotion-gallery
+git clone https://github.com/kyopark2014/image-recommender-based-on-emotion
 ```
 
 관련된 라이브러리를 설치합니다. 
 
 ```java
-git clone https://github.com/kyopark2014/emotion-gallery && npm install
+cd image-recommender-based-on-emotion/cdk-image-recommender/ && npm install
 ```
 
 Account ID를 확인합니다. 
@@ -31,16 +31,19 @@ Account ID를 확인합니다.
 aws sts get-caller-identity --query Account --output text
 ```
 
-아래와 같이 bootstrap을 수행합니다. bootstrap을 1회만 수행하면 됩니다.
+아래와 같이 bootstrap을 수행합니다. 여기서 "account-id"는 상기 명령어로 확인한 12자리의 Account ID입니다. bootstrap 1회만 수행하면 되므로, 기존에 cdk를 사용하고 있었다면 bootstrap은 건너뛰어도 됩니다. 
 
 ```java
-cdk bootstrap aws://123456789012/ap-northeast-2
+cdk bootstrap aws://account-id/ap-northeast-2
 ```
 
-[Stable Diffusion 인프라 설치](./stable-diffusion-deployment.md)에서 얻은 Endpoint의 이름을 아래와 같이 업데이트 합니다.
+Cloud9의 왼쪽 메뉴에서 "emotion-gallery/cdk-emotion-gallery/cdk-emotion-gallery-stack.ts"을 오픈후에 [Stable Diffusion 인프라 설치](./stable-diffusion-deployment.md)에서 얻은 Endpoint의 이름을 아래와 같이 업데이트 합니다.
 
 
-왼쪽 메뉴에서 "emotion-gallery/cdk-emotion-gallery/cdk-emotion-gallery-stack.ts"을 열어서 아래의 bucket 이름을 변경합니다. 
+![noname](https://user-images.githubusercontent.com/52392004/235279107-3ef4ea2e-6e6d-4994-9b29-6bb6ad200157.png)
+
+
+ 아래의 bucket 이름을 변경합니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/226772955-e4097752-0216-4bf4-ada6-826463d89356.png)
 
