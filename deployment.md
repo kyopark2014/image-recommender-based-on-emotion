@@ -94,7 +94,6 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 
 
-<!--
 ### S3의 퍼미션 추가
 
 [S3 console](https://s3.console.aws.amazon.com/s3/buckets?region=ap-northeast-1&region=ap-northeast-1)로 진입한 후에, 데모에 사용되는 bucket인 "emotion-gallery"을 선택합니다. 
@@ -124,4 +123,3 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
     ]
 }
 ```
--->
