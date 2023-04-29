@@ -47,9 +47,18 @@ Cloud9의 왼쪽 메뉴에서 "emotion-gallery/cdk-emotion-gallery/cdk-emotion-g
 cdk deploy
 ```
 
+실행이 되면 아래와 같이 Output을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/52392004/235280195-66f9f76a-cbfb-4f72-812b-229f3cf284b1.png)
+
+여기서, "CopyCommend"을 터미널에서 실행합니다.
+
+```java
+aws s3 cp ../data/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
+```
 
 
-
+<!--
 Custom Domain이 없으므로, Cloud9에서 "emotion-gallery/cdk-emotion-gallery/lib/cdk-emotion-gallery-stack.ts"을 열어서, 아래와 같이 CloudFront의 도메인 정보를 업데이트합니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/226774406-b3fd0981-8e47-4b7c-9860-11743247e284.png)
@@ -59,7 +68,7 @@ Custom Domain이 없으므로, Cloud9에서 "emotion-gallery/cdk-emotion-gallery
 ```java
 cdk deploy
 ```
-
+-->
 
 
 <!--
