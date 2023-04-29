@@ -31,7 +31,7 @@
 [이미지 생성하기](https://github.com/kyopark2014/image-recommender-based-on-emotion/blob/main/image-generation.md)를 따라서 8개 감정에 대한 이미지를 생성합니다. 
 
 
-### 데이터 만들기
+## DataSet 만들기
 
 #### Enabler 사용 준비
 
