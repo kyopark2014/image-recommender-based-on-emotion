@@ -84,9 +84,7 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 [lambda-like Console](https://ap-northeast-2.console.aws.amazon.com/lambda/home?region=ap-northeast-2#/functions/lambda-like?tab=configure)의 [Configuration]으로 접속하여 아래와 같이 "trackingId"으로 "326c8489-2683-420c-b7eb-4ac44bde346d"임을 입력합니다. 
 
-![noname](https://user-images.githubusercontent.com/52392004/235289413-b4366dff-c928-4cb1-b0f5-24fe00b9e59f.png)
-
-
+![noname](https://user-images.githubusercontent.com/52392004/235289614-75af2fcd-5c52-491a-a47b-ffe4db8f7158.png)
 
 
 
