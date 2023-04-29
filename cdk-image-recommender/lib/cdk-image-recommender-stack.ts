@@ -841,7 +841,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     // POST method
     const generateDataset = api.root.addResource('generateDataset');
-    generateDataset.addMethod('POST', new apiGateway.LambdaIntegration(lambdaClearDynamoIndex, {
+    generateDataset.addMethod('POST', new apiGateway.LambdaIntegration(lambdaGenerateDataset, {
       passthroughBehavior: apiGateway.PassthroughBehavior.WHEN_NO_TEMPLATES,
       credentialsRole: role,
       integrationResponses: [{
