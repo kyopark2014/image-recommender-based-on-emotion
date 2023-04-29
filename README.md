@@ -43,21 +43,6 @@ Enabler 실행하기 위해서는 아래와 같이 "tools/enabler" 폴더를 Clo
 aws s3 cp ../tools/enabler/ s3://emotion-gallery/ --recursive 
 ```
 
-#### Event trackers 생성
-
-실시간으로 User와 Interaction 데이터의 수집하기 위해서는 Event Tracker를 생성하여야 합니다. 따라서, 아래와 같이 Personalize의 Event trackers를 준비하고, 생성된 Event Tracker의  Tracking ID 정보를 소스 코드에 반영합니다. 
-
-[Amazon Personalize]  - [Dataset groups] - [emotion-gallery-dataset] - [Event trackers]로 진입하여 [Configure tracker]에서 아래와 같이 [Tracker name]으로 "emotion-gallery-tracker"라고 입력후 [Next]를 선택합니다. 
-
-![noname](https://user-images.githubusercontent.com/52392004/233830033-8f6a929d-a8b3-4661-8b72-194338ef40ac.png)
-
-이때 "Tracking ID"는 아래와 같이 "5f493dca-a7da-4e40-bda4-05e697c70bf6"임을 알 수 있습니다.
-
-![noname](https://user-images.githubusercontent.com/52392004/233830521-1f03e080-8b63-4fff-b6c8-90c2ca489b1f.png)
-
-다시 Cloud9의 "emotion-gallery/cdk-emotion-gallery/lib/cdk-emotion-gallery-stack.ts"에서 아래와 같이 trackingId을 업데이트 합니다.
-
-![noname](https://user-images.githubusercontent.com/52392004/233830607-d34ff721-7fbc-46a7-97b6-c10c29a9b5a2.png)
 
 #### Enabler를 이용한 User, Interaction 데이터 수집
 
