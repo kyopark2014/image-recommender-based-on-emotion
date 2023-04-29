@@ -28,8 +28,8 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     super(scope, id, props);
 
     // s3 
-    const s3Bucket = new s3.Bucket(this, "emotion-gallery-storage", {
-      // bucketName: "emotion-gallery",
+    const s3Bucket = new s3.Bucket(this, "image-recommender-storage", {
+      // bucketName: "image-recommender",
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
@@ -58,7 +58,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     }); */
 
     // cloudfront
-    const distribution = new cloudFront.Distribution(this, 'cloudfront-emotion-gallery', {
+    const distribution = new cloudFront.Distribution(this, 'cloudfront-image-recommender', {
       defaultBehavior: {
         origin: new origins.S3Origin(s3Bucket),
         allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
@@ -68,14 +68,14 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       priceClass: cloudFront.PriceClass.PRICE_CLASS_200,
     });
 
-    new cdk.CfnOutput(this, 'distributionDomainName-emotion-gallery', {
+    new cdk.CfnOutput(this, 'distributionDomainName-image-recommender', {
       value: distribution.domainName,
       description: 'The domain name of the Distribution',
     });
 
     // API Gateway
-    const role = new iam.Role(this, "api-role-emotion-gallery", {
-      roleName: "api-role-emotion-gallery",
+    const role = new iam.Role(this, "api-role-image-recommender", {
+      roleName: "api-role-image-recommender",
       assumedBy: new iam.ServicePrincipal("apigateway.amazonaws.com")
     });
     role.addToPolicy(new iam.PolicyStatement({
@@ -86,7 +86,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       managedPolicyArn: 'arn:aws:iam::aws:policy/AWSLambdaExecute',
     });
     
-    const api = new apiGateway.RestApi(this, 'api-emotion-gallery', {
+    const api = new apiGateway.RestApi(this, 'api-image-recommender', {
       description: 'API Gateway for emotion gallery',
       endpointTypes: [apiGateway.EndpointType.REGIONAL],
       binaryMediaTypes: ['*/*'],
@@ -105,7 +105,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     for(let i=0;i<nproc;i++) {
       queue[i] = new sqs.Queue(this, 'QueueBulk'+i, {
         visibilityTimeout: cdk.Duration.seconds(310),
-        queueName: 'queue-emotion-gallery'+i+'.fifo',
+        queueName: 'queue-image-recommender'+i+'.fifo',
         fifo: true,
         contentBasedDeduplication: false,
         deliveryDelay: cdk.Duration.millis(0),
@@ -195,7 +195,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     }
 
     // DynamoDB for emotion gallery
-    const tableName = 'db-emotion-gallery';
+    const tableName = 'db-image-recommender';
     const dataTable = new dynamodb.Table(this, 'dynamodb-gallery', {
       tableName: tableName,
       partitionKey: { name: 'ObjKey', type: dynamodb.AttributeType.STRING },
@@ -239,7 +239,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     // personalize
     const datasetGroup = new personalize.CfnDatasetGroup(this, 'DatasetGroup', {
-      name: 'emotion-gallery-dataset',
+      name: 'image-recommender-dataset',
     });
 
     const interactionSchemaJson = `{
@@ -271,14 +271,14 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       "version": "1.0"
     }`;
     const interactionSchema = new personalize.CfnSchema(this, 'InteractionSchema', {
-      name: 'emotion-gallery-interaction-schema',
+      name: 'image-recommender-interaction-schema',
       schema: interactionSchemaJson,
     });
 
     const interactionDataset = new personalize.CfnDataset(this, 'InteractionDataset', {
       datasetGroupArn: datasetGroup.attrDatasetGroupArn,
       datasetType: 'Interactions',
-      name: 'emotion-gallery-interaction-dataset',
+      name: 'image-recommender-interaction-dataset',
       schemaArn: interactionSchema.attrSchemaArn,
     });
 
@@ -310,14 +310,14 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       "version": "1.0"
     }`;
     const userSchema = new personalize.CfnSchema(this, 'UserSchema', {
-      name: 'emotion-gallery-user-schema',
+      name: 'image-recommender-user-schema',
       schema: userSchemaJson,
     });
 
     const userDataset = new personalize.CfnDataset(this, 'UserDataset', {
       datasetGroupArn: datasetGroup.attrDatasetGroupArn,
       datasetType: 'Users',
-      name: 'emotion-gallery-user-dataset',
+      name: 'image-recommender-user-dataset',
       schemaArn: userSchema.attrSchemaArn,
     });
 
@@ -343,14 +343,14 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       "version": "1.0"
     }`;
     const itemSchema = new personalize.CfnSchema(this, 'ItemSchema', {
-      name: 'emotion-gallery-itemSchema',
+      name: 'image-recommender-itemSchema',
       schema: itemSchemaJson,
     });
 
     const itemDataset = new personalize.CfnDataset(this, 'ItemDataset', {
       datasetGroupArn: datasetGroup.attrDatasetGroupArn,
       datasetType: 'Items',
-      name: 'emotion-gallery-itemDataset',
+      name: 'image-recommender-itemDataset',
       schemaArn: itemSchema.attrSchemaArn,
     });
 
@@ -503,7 +503,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         domainName: cloudFrontDomain,
-        campaignArn: "arn:aws:personalize:ap-northeast-1:677146750822:campaign/emotion-gallery-campaign"
+        campaignArn: "arn:aws:personalize:ap-northeast-1:677146750822:campaign/image-recommender-campaign"
       }
     });
     lambdagallery.role?.attachInlinePolicy(
@@ -817,7 +817,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     itemDataTable.grantReadWriteData(lambdaGenerateCSV);
     userDataTable.grantReadWriteData(lambdaGenerateCSV); // permission for dynamo    
 
-    new cdk.CfnOutput(this, 'apiUrl-emotion-gallery', {
+    new cdk.CfnOutput(this, 'apiUrl-image-recommender', {
       value: api.url,
       description: 'The url of API Gateway',
     });
