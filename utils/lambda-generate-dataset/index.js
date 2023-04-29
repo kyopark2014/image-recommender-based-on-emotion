@@ -10,10 +10,11 @@ const dynamo = new aws.DynamoDB.DocumentClient();
 const tableName = process.env.tableName;
 const indexName = process.env.indexName;
 const trackingId = process.env.trackingId;
+const interactionTableName = process.env.interactionTableName;
 
 exports.handler = async (event, context) => {
-    // console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
-    // console.log('## EVENT: ' + JSON.stringify(event))
+    console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
+    console.log('## EVENT: ' + JSON.stringify(event))
 
     const body = Buffer.from(event["body"], "base64");
     // console.log('body: ' + body)
