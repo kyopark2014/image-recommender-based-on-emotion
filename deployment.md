@@ -55,6 +55,17 @@ cdk deploy
 
 ```java
 aws s3 cp ../data/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
+
+Outputs:
+CdkImageRecommenderStack.CopyCommend = aws s3 cp ../data/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
+CdkImageRecommenderStack.Enabler = https://d2nnqu1h4mrgxo.cloudfront.net/enabler.html
+CdkImageRecommenderStack.Gallery = https://d2nnqu1h4mrgxo.cloudfront.net/gallery.html
+CdkImageRecommenderStack.ImageGenerator = https://d2nnqu1h4mrgxo.cloudfront.net/imgGenerator.html
+CdkImageRecommenderStack.Preview = https://d2nnqu1h4mrgxo.cloudfront.net/preview.html
+CdkImageRecommenderStack.apiUrlimagerecommender = https://auor8rwkm7.execute-api.ap-northeast-2.amazonaws.com/dev/
+CdkImageRecommenderStack.apiimagerecommenderEndpointBCEFCEF0 = https://auor8rwkm7.execute-api.ap-northeast-2.amazonaws.com/dev/
+CdkImageRecommenderStack.distributionDomainNameimagerecommender = d2nnqu1h4mrgxo.cloudfront.net
+CdkImageRecommenderStack.galleryWebUrl = https://d2nnqu1h4mrgxo.cloudfront.net/gallery.html
 ```
 
 
