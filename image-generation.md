@@ -12,13 +12,7 @@ Image Generator로 생성된 이미지들은 Preview에서 확인하고, 필요�
 
 동일한 작업을 "놀람(SURPRISED)"등 나머지 7개 감정에 대해 수행합니다.
 
-### Reference 이미지 업로드하기
 
-실습을 위해 Reference 이미지를 업로드 할 수 있습니다.
-
-```java
-aws s3 cp ./samples/emotions/ s3://emotion-gallery/emotions/ --recursive
-```
 
 ### 이미지를 Personalize에 반영하기
 
@@ -32,4 +26,13 @@ cd ~/ && aws s3 cp s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yo
 
 ```java
 aws s3 cp ./imgPool/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
+```
+
+
+## Reference 이미지 업로드하기
+
+실습을 위해 Reference 이미지를 업로드 할 수 있습니다.
+
+```java
+aws s3 cp ./samples/emotions/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
 ```
