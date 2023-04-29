@@ -28,35 +28,8 @@
 
 ## 이미지 생성
 
-![image](https://user-images.githubusercontent.com/52392004/233811634-8116f361-d2c7-40f2-9d20-97dff8e00811.png)
+[이미지 생성하기](https://github.com/kyopark2014/image-recommender-based-on-emotion/blob/main/image-generation.md)를 따라서 8개 감정에 대한 이미지를 생성합니다. 
 
-Output의 copy 명령어를 이용해 tools를 설치합니다.
-
-```java
-aws s3 cp ../tools/ s3://emotion-gallery/tools --recursive
-```
-
-### Image Generator로 이미지 생성하기 
-
-image generator를 실행합니다.
-
-```java
-https://d14j04tdmh4c1d.cloudfront.net/tools/imgGenerator/imgGenerator.html
-```
-
-Preview를 이용하여 이미지를 확인후 적절한 이미지를 선택합니다.
-
-```java
-https://d14j04tdmh4c1d.cloudfront.net/tools/preview/preview.html
-```
-
-### Reference 이미지 업로드하기
-
-실습을 위해 Reference 이미지를 업로드 합니다. 
-
-```java
-aws s3 cp emotions/ s3://emotion-gallery/emotions/ --recursive
-```
 
 ### 데이터 만들기
 
