@@ -82,7 +82,9 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 ![noname](https://user-images.githubusercontent.com/52392004/235289151-d19d0cc7-7e61-4acc-8faf-fde2083d9b16.png)
 
+[lambda-like Console](https://ap-northeast-2.console.aws.amazon.com/lambda/home?region=ap-northeast-2#/functions/lambda-like?tab=configure)의 [Configuration]으로 접속하여 아래와 같이 "trackingId"으로 "326c8489-2683-420c-b7eb-4ac44bde346d"임을 입력합니다. 
 
+![noname](https://user-images.githubusercontent.com/52392004/235289413-b4366dff-c928-4cb1-b0f5-24fe00b9e59f.png)
 
 
 
@@ -103,17 +105,10 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 ![noname](https://user-images.githubusercontent.com/52392004/233830607-d34ff721-7fbc-46a7-97b6-c10c29a9b5a2.png)
 
 
-<!--
-Custom Domain이 없으므로, Cloud9에서 "emotion-gallery/cdk-emotion-gallery/lib/cdk-emotion-gallery-stack.ts"을 열어서, 아래와 같이 CloudFront의 도메인 정보를 업데이트합니다. 
 
-![noname](https://user-images.githubusercontent.com/52392004/226774406-b3fd0981-8e47-4b7c-9860-11743247e284.png)
 
-업데이트된 domain 정보를 반영하기 위하여 아래와 같이 다시 설치합니다.
 
-```java
-cdk deploy
-```
--->
+
 
 
 <!--
