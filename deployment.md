@@ -74,11 +74,23 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 ![noname](https://user-images.githubusercontent.com/52392004/235288753-56861bb5-33f8-42d6-8f2b-9db63ea2ebc1.png)
 
+[Configure tracker]에서 아래와 같이 [Tracker name]으로 "image-recommender-event-tracker"라고 입력후 [Next]를 선택하고, [Finish]를 선택합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/235288895-e64a2799-6070-4d5b-9929-33e31f384a13.png)
+
+왼쪽 메뉴의 [Event trackers]를 선택한 후에 "image-recommender-event-tracker"를 선택하면, 아래와 같이 Tracking ID를 확인할 수 있습니다. 아래와 같이 여기에서는 Tracking ID가 "326c8489-2683-420c-b7eb-4ac44bde346d"임을 알 수 있습니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/235289151-d19d0cc7-7e61-4acc-8faf-fde2083d9b16.png)
+
+
+
+
+
 
 
 따라서, 아래와 같이 Personalize의 Event trackers를 준비하고, 생성된 Event Tracker의  Tracking ID 정보를 소스 코드에 반영합니다. 
 
-[Amazon Personalize]  - [Dataset groups] - [emotion-gallery-dataset] - [Event trackers]로 진입하여 [Configure tracker]에서 아래와 같이 [Tracker name]으로 "emotion-gallery-tracker"라고 입력후 [Next]를 선택합니다. 
+[Amazon Personalize]  - [Dataset groups] - [emotion-gallery-dataset] - [Event trackers]로 진입하여 
 
 ![noname](https://user-images.githubusercontent.com/52392004/233830033-8f6a929d-a8b3-4661-8b72-194338ef40ac.png)
 
