@@ -44,7 +44,6 @@ exports.handler = async (event, context) => {
 
         if (eventName == 'ObjectCreated:Put') {
             let date = new Date();
-            //const timestamp = Math.floor(date.getTime() / 1000).toString();
             const timestamp = Math.floor(date.getTime()/1000);
             console.log('timestamp: ', timestamp);
 
