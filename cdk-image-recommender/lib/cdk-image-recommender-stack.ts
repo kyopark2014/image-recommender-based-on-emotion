@@ -824,7 +824,8 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(10),
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
-        datasetArn: interactionDataset.attrDatasetArn,
+        //datasetArn: interactionDataset.attrDatasetArn,
+        userDatasetArn: userDataset.attrDatasetArn,
         userTableName: userTableName,
         tableName: tableName,
         indexName: indexName,
