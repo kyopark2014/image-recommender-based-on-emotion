@@ -584,7 +584,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         }
       ]
     });
-    // cloudfront setting for api gateway of clearIndex
+    // cloudfront setting for api gateway of like
     distribution.addBehavior("/like", new origins.RestApiOrigin(api), {
       cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
       allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
@@ -841,7 +841,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     // POST method
     const generateDataset = api.root.addResource('generateDataset');
-    clearIndex.addMethod('POST', new apiGateway.LambdaIntegration(lambdaClearDynamoIndex, {
+    generateDataset.addMethod('POST', new apiGateway.LambdaIntegration(lambdaClearDynamoIndex, {
       passthroughBehavior: apiGateway.PassthroughBehavior.WHEN_NO_TEMPLATES,
       credentialsRole: role,
       integrationResponses: [{
