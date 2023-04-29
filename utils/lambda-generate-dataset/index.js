@@ -101,12 +101,12 @@ exports.handler = async (event, context) => {
     }  
 
     let date = new Date();
-    const timestamp = date.getTime();
-    console.log('timestamp: ', timestamp);
-    
+    const current = date.getTime();
+    console.log('current: ', current);
+
     for(let i in dynamoQuery['Items']) {    
         let itemId = dynamoQuery['Items'][i]['ObjKey'];
-
+        let timestamp = current + parseInt(i);
         let impression = [];
         impression.push(itemId);
 
@@ -130,7 +130,7 @@ exports.handler = async (event, context) => {
             console.log('putEvent result: ' + JSON.stringify(result));
 
             let impressionStr = "";
-        /*    if(impression.length==1) {
+            if(impression.length==1) {
                 impressionStr = impression[0];
             }
             else {
@@ -141,7 +141,7 @@ exports.handler = async (event, context) => {
                 }
                 impressionStr += impression[i]
             }
-            console.log('impressionStr: ' + impressionStr); */
+            console.log('impressionStr: ' + impressionStr); 
             
             // DynamodB for personalize interactions
             var personalzeParams = {
@@ -178,7 +178,7 @@ exports.handler = async (event, context) => {
                 body: error
             };
         }
-    }
+    } 
 
     function wait() {
         return new Promise((resolve, reject) => {
