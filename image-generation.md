@@ -28,7 +28,7 @@ imgPool에 있는 이미지를 Cloud9으로 다운로드 합니다.
 cd ~/ && aws s3 cp s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/imgPool/ ./imgPool/ --recursive
 ```
 
-"emotions" 폴더로 이미지들을 복사합니다. 
+"emotions" 폴더로 생성한 이미지들을 복사합니다. 
 
 ```java
 aws s3 cp ./imgPool/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
