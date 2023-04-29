@@ -21,7 +21,8 @@ const endpoints = [
   "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
 ]
 const nproc = 1;
-// const cloudFrontDomain = "d14j04tdmh4c1d.cloudfront.net";
+const trackingId = "326c8489-2683-420c-b7eb-4ac44bde346d";
+
 
 export class CdkImageRecommenderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -556,7 +557,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         datasetArn: interactionDataset.attrDatasetArn,
         datasetGroupArn: datasetGroup.attrDatasetGroupArn,
         interactionTableName: interactionTableName,
-        trackingId: "067c4bf9-83bc-465e-8c15-daa07bce9989"
+        trackingId: trackingId
       }
     });
     lambdaLike.role?.attachInlinePolicy(
@@ -831,6 +832,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         tableName: tableName,
         indexName: indexName,
         interactionTableName: interactionTableName,
+        trackingId: trackingId
       }
     });    
     interactionDataTable.grantReadWriteData(lambdaGenerateDataset);
