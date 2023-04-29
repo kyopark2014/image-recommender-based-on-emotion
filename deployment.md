@@ -39,13 +39,7 @@ cdk bootstrap aws://account-id/ap-northeast-2
 
 Cloud9의 왼쪽 메뉴에서 "emotion-gallery/cdk-emotion-gallery/cdk-emotion-gallery-stack.ts"을 오픈후에 [Stable Diffusion 인프라 설치](./stable-diffusion-deployment.md)에서 얻은 Endpoint의 이름을 아래와 같이 업데이트 합니다.
 
-
 ![noname](https://user-images.githubusercontent.com/52392004/235279107-3ef4ea2e-6e6d-4994-9b29-6bb6ad200157.png)
-
-
- 아래의 bucket 이름을 변경합니다. 
-
-![noname](https://user-images.githubusercontent.com/52392004/226772955-e4097752-0216-4bf4-ada6-826463d89356.png)
 
 이제 cdk로 인프라를 설치합니다. 
 
