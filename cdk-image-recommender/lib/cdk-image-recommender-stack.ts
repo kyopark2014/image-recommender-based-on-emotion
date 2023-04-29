@@ -814,7 +814,58 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     interactionDataTable.grantReadWriteData(lambdaGenerateCSV);
     itemDataTable.grantReadWriteData(lambdaGenerateCSV);
     userDataTable.grantReadWriteData(lambdaGenerateCSV); // permission for dynamo    
+    
+    // UTIL: generate dataset for user and interaction
+    const lambdaGenerateDataset = new lambda.Function(this, "lambda-generate-dataset", {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      functionName: "lambda-generate-csv",
+      code: lambda.Code.fromAsset("../utils/lambda-generate-dataset"),
+      handler: "index.handler",
+      timeout: cdk.Duration.seconds(10),
+      logRetention: logs.RetentionDays.ONE_DAY,
+      environment: {
+        datasetArn: interactionDataset.attrDatasetArn,
+        userTableName: userTableName,
+        tableName: tableName,
+        indexName: indexName,
+        interactionTableName: interactionTableName,
+      }
+    });
+    interactionDataTable.grantReadWriteData(lambdaGenerateDataset);
+    userDataTable.grantReadWriteData(lambdaGenerateDataset); // permission for dynamo    
+    lambdaGenerateDataset.role?.attachInlinePolicy(
+      new iam.Policy(this, 'personalize-policy-for-lambda-generate-dataset', {
+        statements: [PersonalizePolicy],
+      }),
+    );
 
+    // POST method
+    const generateDataset = api.root.addResource('generateDataset');
+    clearIndex.addMethod('POST', new apiGateway.LambdaIntegration(lambdaClearDynamoIndex, {
+      passthroughBehavior: apiGateway.PassthroughBehavior.WHEN_NO_TEMPLATES,
+      credentialsRole: role,
+      integrationResponses: [{
+        statusCode: '200',
+      }],
+      proxy: true,
+    }), {
+      methodResponses: [
+        {
+          statusCode: '200',
+          responseModels: {
+            'application/json': apiGateway.Model.EMPTY_MODEL,
+          },
+        }
+      ]
+    });
+    // cloudfront setting for api gateway of clearIndex
+    distribution.addBehavior("/generateDataset", new origins.RestApiOrigin(api), {
+      cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
+      allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
+      viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+    });
+
+    // Outputs
     new cdk.CfnOutput(this, 'apiUrl-image-recommender', {
       value: api.url,
       description: 'The url of API Gateway',
@@ -844,66 +895,5 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       value: 'https://' + distribution.domainName + '/gallery.html',
       description: 'url of gallery',
     });
-
-
-  /*      
-    // cloudfront setting for api gateway of stable diffusion
-    distribution.addBehavior("/text2image", new origins.RestApiOrigin(api), {
-      cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
-      allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
-      viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-    });
-
-
-
-
-    
-    new cdk.CfnOutput(this, 'EmotionWebUrl', {
-      value: 'https://' + distribution.domainName + '/emotion.html',
-      description: 'The web url of emotion',
-    });
-
-    
-
-
-
-    
-    
-    
-
-    
-    
-    
-    new cdk.CfnOutput(this, 'BackupCommend', {
-      value: 'aws s3 cp ' + 's3://' + s3Bucket.bucketName + '/emotions/ ./emotions/ --recursive',
-      description: 'copy commend for backup images',
-    });
-    new cdk.CfnOutput(this, 'RestoreCommend', {
-      value: 'aws s3 cp ./emotions/ ' + 's3://' + s3Bucket.bucketName + '/emotions/ --recursive',
-      description: 'copy commend for restore images',
-    });
-    new cdk.CfnOutput(this, 'UploadCommend', {
-      value: 'aws s3 cp imgPool/ ' + 's3://' + s3Bucket.bucketName + '/emotions/ . --recursive',
-      description: 'copy commend for backup images',
-    });
-
-    new cdk.CfnOutput(this, 'downloadCommendFromImagePool', {
-      value: 'aws s3 cp s3://' + s3Bucket.bucketName + '/imgPool/ ./imgPool/ --recursive',
-      description: 'copy commend for backup images in image pool',
-    });
-    new cdk.CfnOutput(this, 'uploadCommendFromImagePool', {
-      value: 'aws s3 cp ./imgPool/ s3://' + s3Bucket.bucketName + '/emotions/ --recursive',
-      description: 'retore commend for backup images in image pool',
-    });
-
-
-
-    
-
-    
-    
-    
-    
-    */
   }
 }
