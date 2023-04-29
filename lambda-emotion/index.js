@@ -7,7 +7,6 @@ const sqs = new aws.SQS({apiVersion: '2012-11-05'});
 
 const bucketName = process.env.bucketName;
 const datasetArn = process.env.datasetArn;
-const sqsOpenSearchUrl = process.env.sqsOpenSearchUrl;
 const userTableName = process.env.userTableName;
 const dynamo = new aws.DynamoDB.DocumentClient();
 
@@ -143,7 +142,7 @@ exports.handler = async (event, context) => {
                     users: [{
                         userId: userId,
                         properties: {
-                            "GENERATION": generation,
+                        //    "GENERATION": generation,
                             "GENDER": gender,
                             "EMOTION": emotions
                         }
