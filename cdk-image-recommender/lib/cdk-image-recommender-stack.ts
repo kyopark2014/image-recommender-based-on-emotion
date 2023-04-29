@@ -18,7 +18,7 @@ import * as personalize from 'aws-cdk-lib/aws-personalize';
 const debug = false;
 const stage = "dev";
 const endpoints = [
-  "jumpstart-example-model-txt2img-stabili-2023-04-22-16-31-10-149",
+  "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
 ]
 const nproc = 1;
 const cloudFrontDomain = "d14j04tdmh4c1d.cloudfront.net";
@@ -29,7 +29,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     // s3 
     const s3Bucket = new s3.Bucket(this, "emotion-gallery-storage", {
-      bucketName: "emotion-gallery",
+      // bucketName: "emotion-gallery",
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
