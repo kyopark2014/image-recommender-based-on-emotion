@@ -166,7 +166,7 @@ exports.handler = async (event, context) => {
                 TableName: userTableName,
                 Item: {
                     USER_ID: userId,
-                    GENERATION: generation,
+                    // GENERATION: generation,
                     GENDER: gender,
                     EMOTION: emotions,
                 }
