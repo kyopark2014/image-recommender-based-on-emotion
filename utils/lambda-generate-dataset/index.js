@@ -13,20 +13,23 @@ const trackingId = process.env.trackingId;
 const interactionTableName = process.env.interactionTableName;
 
 exports.handler = async (event, context) => {
-    console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
-    console.log('## EVENT: ' + JSON.stringify(event))
+    //console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
+    //console.log('## EVENT: ' + JSON.stringify(event));
 
-    const body = Buffer.from(event["body"], "base64");
-    // console.log('body: ' + body)
+    const body = JSON.parse(Buffer.from(event["body"], "base64"));
+    console.log('body: ' + JSON.stringify(body));
     const header = event['multiValueHeaders'];
-    // console.log('header: ' + JSON.stringify(header));
+    console.log('header: ' + JSON.stringify(header));
 
     let response = "";
     let isCompleted = false;
 
     let userId = body['userId'];
+    // console.log('userId: ' + userId);
     let gender = body['gender'];
-    let emotions = body['emotion'];
+    // console.log('gender: ' + gender);
+    let emotion = body['emotion'];
+    // console.log('emotion: ' + emotion);
 
     // create user dataset
     try {
@@ -37,7 +40,7 @@ exports.handler = async (event, context) => {
                 properties: {
                 //    "GENERATION": generation,
                     "GENDER": gender,
-                    "EMOTION": emotions
+                    "EMOTION": emotion
                 }
             }]
         };
@@ -61,7 +64,7 @@ exports.handler = async (event, context) => {
             USER_ID: userId,
             // GENERATION: generation,
             GENDER: gender,
-            EMOTION: emotions,
+            EMOTION: emotion,
         }
     };
     console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
@@ -124,7 +127,7 @@ exports.handler = async (event, context) => {
             console.log('putEvent result: ' + JSON.stringify(result));
 
             let impressionStr = "";
-            if(impression.length==1) {
+        /*    if(impression.length==1) {
                 impressionStr = impression[0];
             }
             else {
@@ -135,7 +138,7 @@ exports.handler = async (event, context) => {
                 }
                 impressionStr += impression[i]
             }
-            console.log('impressionStr: ' + impressionStr);
+            console.log('impressionStr: ' + impressionStr); */
             
             // DynamodB for personalize interactions
             var personalzeParams = {
