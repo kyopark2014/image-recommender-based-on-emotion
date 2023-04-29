@@ -1,4 +1,4 @@
-# Emotion Gallery 배포 방법
+# 인프라 생성하기
 
 ## Cloud9 생성 
 
