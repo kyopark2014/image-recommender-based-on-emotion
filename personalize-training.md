@@ -24,6 +24,30 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 
 
+## Personalize 환경 준비
+
+#### Enabler 사용 준비
+
+Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interaction 데이터가 있어야 합니다. 따라서 gallery에서 이미지를 보여주기 위해서는 먼저 최소한의 Traning Dateset을 준비하여야 합니다. 이를 위해 여기서는 Enabler를 이용하여 데이터를 수집합니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다.
+
+Enabler 실행하기 위해서는 아래와 같이 "tools/enabler" 폴더를 CloudFront와 연결된 S3 Bucket의 루트로 복사합니다.
+
+```java
+aws s3 cp ../tools/enabler/ s3://emotion-gallery/ --recursive 
+```
+
+
+#### Enabler를 이용한 User, Interaction 데이터 수집
+
+아래 경로로 진입하여 Recommendation을 위한 기본 Dataset을 생성합니다. 
+
+```java
+https://d14j04tdmh4c1d.cloudfront.net/enabler.html
+```
+
+
+
+
 
 
 ### S3의 퍼미션 추가
