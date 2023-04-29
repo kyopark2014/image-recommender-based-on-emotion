@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
     }  
 
     let date = new Date();
-    const current = date.getTime();
+    const current = date.getTime()/1000;
     console.log('current: ', current);
 
     for(let i in dynamoQuery['Items']) {    
