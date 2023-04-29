@@ -68,6 +68,28 @@ CdkImageRecommenderStack.distributionDomainNameimagerecommender = d2nnqu1h4mrgxo
 CdkImageRecommenderStack.galleryWebUrl = https://d2nnqu1h4mrgxo.cloudfront.net/gallery.html
 ```
 
+## Event Trackers 생성
+
+Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Event Tracker를 생성하여야 합니다. [Data Group Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 진입하여, 아래와 같이 "image-recommender-dataset"을 선택합니다. 이후 [Create event tracker]를 선택합니다. 
+
+![noname](https://user-images.githubusercontent.com/52392004/235288753-56861bb5-33f8-42d6-8f2b-9db63ea2ebc1.png)
+
+
+
+따라서, 아래와 같이 Personalize의 Event trackers를 준비하고, 생성된 Event Tracker의  Tracking ID 정보를 소스 코드에 반영합니다. 
+
+[Amazon Personalize]  - [Dataset groups] - [emotion-gallery-dataset] - [Event trackers]로 진입하여 [Configure tracker]에서 아래와 같이 [Tracker name]으로 "emotion-gallery-tracker"라고 입력후 [Next]를 선택합니다. 
+
+![noname](https://user-images.githubusercontent.com/52392004/233830033-8f6a929d-a8b3-4661-8b72-194338ef40ac.png)
+
+이때 "Tracking ID"는 아래와 같이 "5f493dca-a7da-4e40-bda4-05e697c70bf6"임을 알 수 있습니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/233830521-1f03e080-8b63-4fff-b6c8-90c2ca489b1f.png)
+
+다시 Cloud9의 "emotion-gallery/cdk-emotion-gallery/lib/cdk-emotion-gallery-stack.ts"에서 아래와 같이 trackingId을 업데이트 합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/233830607-d34ff721-7fbc-46a7-97b6-c10c29a9b5a2.png)
+
 
 <!--
 Custom Domain이 없으므로, Cloud9에서 "emotion-gallery/cdk-emotion-gallery/lib/cdk-emotion-gallery-stack.ts"을 열어서, 아래와 같이 CloudFront의 도메인 정보를 업데이트합니다. 
