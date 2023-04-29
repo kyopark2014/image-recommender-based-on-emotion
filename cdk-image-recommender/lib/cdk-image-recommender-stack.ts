@@ -292,11 +292,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
           "type": "string"
         },
         {
-          "name": "GENERATION",
-          "type": "string",
-          "categorical": true
-        },
-        {
           "name": "GENDER",
           "type": "string",
           "categorical": true
@@ -309,6 +304,12 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       ],
       "version": "1.0"
     }`;
+    // {
+    //  "name": "GENERATION",
+    //  "type": "string",
+    //  "categorical": true
+    // }
+    
     const userSchema = new personalize.CfnSchema(this, 'UserSchema', {
       name: 'image-recommender-user-schema',
       schema: userSchemaJson,

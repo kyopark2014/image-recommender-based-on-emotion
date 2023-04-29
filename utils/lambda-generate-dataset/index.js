@@ -18,8 +18,8 @@ exports.handler = async (event, context) => {
 
     const body = JSON.parse(Buffer.from(event["body"], "base64"));
     console.log('body: ' + JSON.stringify(body));
-    const header = event['multiValueHeaders'];
-    console.log('header: ' + JSON.stringify(header));
+    //const header = event['multiValueHeaders'];
+    //console.log('header: ' + JSON.stringify(header));
 
     let response = "";
     let isCompleted = false;
