@@ -818,7 +818,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     // UTIL: generate dataset for user and interaction
     const lambdaGenerateDataset = new lambda.Function(this, "lambda-generate-dataset", {
       runtime: lambda.Runtime.NODEJS_16_X,
-      functionName: "lambda-generate-csv",
+      functionName: "lambda-generate-dataset",
       code: lambda.Code.fromAsset("../utils/lambda-generate-dataset"),
       handler: "index.handler",
       timeout: cdk.Duration.seconds(10),
