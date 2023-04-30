@@ -195,7 +195,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     }
 
     // DynamoDB for emotion gallery
-    const tableName = 'db-image-recommender';
+  /*  const tableName = 'db-image-recommender';
     const dataTable = new dynamodb.Table(this, 'dynamodb-gallery', {
       tableName: tableName,
       partitionKey: { name: 'ObjKey', type: dynamodb.AttributeType.STRING },
@@ -898,6 +898,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'Gallery', {
       value: 'https://' + distribution.domainName + '/gallery.html',
       description: 'url of gallery',
-    });  
+    });  */
   }
 }
