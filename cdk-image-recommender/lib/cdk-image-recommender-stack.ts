@@ -372,6 +372,19 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       });
     }
 
+    var params = {
+        datasetGroupArn: datasetGroup.attrDatasetGroupArn, 
+        name: "eventTracker",
+    };
+
+    let trackingId;
+    const aws = require('aws-sdk');
+    const personalizeevents = new aws.PersonalizeEvents();
+    const personalizelib = new aws.Personalize();
+    const result = personalizelib.createEventTracker(params);
+    console.log('putEvent result: ' + JSON.stringify(result));
+    trackingId = result.trackingId;
+
     // Lambda for s3 event
     const lambdaS3event = new lambda.Function(this, 'lambda-S3-event', {
       runtime: lambda.Runtime.NODEJS_16_X,
