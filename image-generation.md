@@ -33,5 +33,5 @@ aws s3 cp ./imgPool/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32
 
 원활한 실습을 위해 Sample 이미지를 활용할 수 있습니다.
 ```java
-aws s3 cp ./samples/emotions/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
+aws s3 cp ../samples/emotions/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
 ```
