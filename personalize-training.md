@@ -68,16 +68,46 @@ https://d14j04tdmh4c1d.cloudfront.net/enabler.html
             "Effect": "Allow",
             "Principal": {
                 "Service": "personalize.amazonaws.com",
-                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2IK80DBQT2AVI"
+                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2X1ZWYFLCLC5X"
             },
             "Action": [
                 "s3:GetObject",
                 "s3:ListBucket"
             ],
             "Resource": [
-                "arn:aws:s3:::emotion-gallery",
-                "arn:aws:s3:::emotion-gallery/*"
+                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc",
+                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
             ]
+        }
+    ]
+}
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::677146750822:role/CdkImageRecommenderStack-CustomS3AutoDeleteObjects-1WZ9EELHGNK00",
+                "Service": "personalize.amazonaws.com"
+            },
+            "Action": [
+                "s3:DeleteObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc",
+                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2X1ZWYFLCLC5X"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
         }
     ]
 }
