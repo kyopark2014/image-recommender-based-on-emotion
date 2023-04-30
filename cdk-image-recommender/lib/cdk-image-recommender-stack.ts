@@ -379,11 +379,15 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     let trackingId;
     const aws = require('aws-sdk');
-    const personalizeevents = new aws.PersonalizeEvents();
     const personalizelib = new aws.Personalize();
     const result = personalizelib.createEventTracker(params);
     console.log('putEvent result: ' + JSON.stringify(result));
     trackingId = result.trackingId;
+
+    new cdk.CfnOutput(this, 'trackingId', {
+      value: result.trackingId,
+      description: 'tracking ID',
+    });  
 
     // Lambda for s3 event
     const lambdaS3event = new lambda.Function(this, 'lambda-S3-event', {
