@@ -49,7 +49,7 @@ exports.handler = async (event, context) => {
 
 
     let date = new Date();
-    const timestamp = Math.floor(date.getTime()/1000);
+    const timestamp = Math.floor(date.getTime()/1000.0);
     console.log('timestamp: ', timestamp);
 
     let response;
