@@ -61,12 +61,12 @@ exports.handler = async (event, context) => {
             trackingId: trackingId,
             userId: userId,
             eventList: [{
-                eventType: "click",  // 'rating'
+                eventType: "click",  // 'watched', 'rating'
                 sentAt: timestamp,
                 eventId: uuidv4(),
                 // eventValue: 11,                
                 itemId: itemId,
-                impression: impression,
+                impression: impression, 
             }],
         };
         console.log('event params: ', JSON.stringify(params));
@@ -82,7 +82,7 @@ exports.handler = async (event, context) => {
             let i=0;
             for(; i<impression.length-1; i++) {                
                 impressionStr += impression[i];    
-                impressionStr += '|'
+                impressionStr += '|'     // vertical bar (<1000)
             }
             impressionStr += impression[i]
         }
