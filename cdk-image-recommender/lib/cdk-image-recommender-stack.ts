@@ -162,7 +162,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // Lambda for bulk-stable-diffusion    
-  /*  const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
+    const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
       actions: ['sagemaker:*'],
       resources: ['*'],
     });
@@ -898,6 +898,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'Gallery', {
       value: 'https://' + distribution.domainName + '/gallery.html',
       description: 'url of gallery',
-    });  */
+    });  
   }
 }

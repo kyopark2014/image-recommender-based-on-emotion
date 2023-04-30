@@ -106,7 +106,7 @@ exports.handler = async (event, context) => {
 
     for(let i in dynamoQuery['Items']) {    
         let itemId = dynamoQuery['Items'][i]['ObjKey'];
-        let timestamp = current + parseInt(i);
+        let timestamp = current + parseInt(i) - 300;
         let impression = [];
         impression.push(itemId);
 
