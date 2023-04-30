@@ -503,7 +503,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       timeout: cdk.Duration.seconds(10),
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
-        campaignArn: "arn:aws:personalize:ap-northeast-1:677146750822:campaign/image-recommender-campaign"
+        campaignArn: `arn:aws:personalize:${cdk.Stack.of(this).region}:${cdk.Stack.of(this).account}:campaign/image-recommender-campaign`
       }
     });
     lambdagallery.role?.attachInlinePolicy(
@@ -511,6 +511,10 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         statements: [PersonalizePolicy],
       }),
     );
+    new cdk.CfnOutput(this, 'campaignArn', {
+      value: `arn:aws:personalize:${cdk.Stack.of(this).region}:${cdk.Stack.of(this).account}:campaign/image-recommender-campaign`,
+      description: 'campaignArn',
+    }); 
 
     // POST method
     const gallery = api.root.addResource('gallery');
