@@ -826,7 +826,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       functionName: "lambda-generate-dataset",
       code: lambda.Code.fromAsset("../utils/lambda-generate-dataset"),
       handler: "index.handler",
-      timeout: cdk.Duration.seconds(10),
+      timeout: cdk.Duration.seconds(180),
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         //datasetArn: interactionDataset.attrDatasetArn,
