@@ -889,7 +889,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       description: 'copy commend for samples',
     }); 
 
-
     new cdk.CfnOutput(this, 'ImageGenerator', {
       value: 'https://' + distribution.domainName + '/imgGenerator.html',
       description: 'url of image generator',
@@ -900,6 +899,11 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       description: 'url of preview',
     });
 
+    new cdk.CfnOutput(this, 'DatasetGenerator', {
+      value: 'https://' + distribution.domainName + '/datasetGenerator.html',
+      description: 'url of dataset generator',
+    });
+        
     new cdk.CfnOutput(this, 'Enabler', {
       value: 'https://' + distribution.domainName + '/enabler.html',
       description: 'url of enabler',
