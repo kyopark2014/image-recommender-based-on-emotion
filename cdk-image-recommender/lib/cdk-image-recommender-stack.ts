@@ -21,7 +21,7 @@ const endpoints = [
   "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
 ]
 const nproc = 1;
-const trackingId = "3f33ae98-3f08-42ea-8cf0-eb86f38d9590";
+const trackingId = "cb6f269d-b6b0-4030-8d31-117790cdb4aa";
 
 export class CdkImageRecommenderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -879,10 +879,16 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       description: 'The url of API Gateway',
     });
 
-    new cdk.CfnOutput(this, 'CopyCommend', {
-      value: 'aws s3 cp ../data/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
+    new cdk.CfnOutput(this, 'CopyHtml', {
+      value: 'aws s3 cp ../html/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
       description: 'copy commend for data',
     }); 
+
+    new cdk.CfnOutput(this, 'CopySample', {
+      value: 'aws s3 cp ../sample/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
+      description: 'copy commend for samples',
+    }); 
+
 
     new cdk.CfnOutput(this, 'ImageGenerator', {
       value: 'https://' + distribution.domainName + '/imgGenerator.html',

@@ -86,7 +86,7 @@ exports.handler = async (event, context) => {
             // console.log('smile: ', smile);
             const sunglasses = profile['Sunglasses']['Value'];
             // console.log('sunglasses: ', sunglasses);
-            const gender = profile['Gender']['Value'];
+            const gender = profile['Gender']['Value'].toLowerCase();
             // console.log('gender: ', gender);
             const beard = profile['Beard']['Value'];
             // console.log('beard: ', beard);
