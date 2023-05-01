@@ -63,6 +63,6 @@ form.elements.send.onclick = function () {
 
     generateDataset(requestList);   
     
-    alert("Dataset 생성이 완료되었습니다.");    
+    alert("Dataset 생성 요청이 완료되었습니다.");    
 };
 
