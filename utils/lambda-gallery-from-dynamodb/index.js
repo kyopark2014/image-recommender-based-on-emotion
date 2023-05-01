@@ -55,7 +55,7 @@ exports.handler = async (event, context) => {
 
         const imgProfile = {
             url: url,
-            emotion: emotion,
+            // emotion: emotion,
         }
 
         imgInfo.push(imgProfile);

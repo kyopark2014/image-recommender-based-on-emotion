@@ -235,7 +235,7 @@ function drawGallery(emotionValue) {
     let requestObj = {
         "id": userId,
         "emotion": emotionValue,
-        "generation": generation,
+       // "generation": generation,
         "gender": gender,
     };
     console.log("request: " + JSON.stringify(requestObj));
