@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
             console.log('user params: ', JSON.stringify(params));
 
             const result = await personalizeevents.putUsers(params).promise(); 
-            console.log('putUser result: '+JSON.stringify(result));                
+            //console.log('putUser result: '+JSON.stringify(result));                
         } catch (error) {
             console.log(error);
 
@@ -68,14 +68,14 @@ exports.handler = async (event, context) => {
                 EMOTION: emotion,
             }
         };
-        console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
+        // console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
 
         dynamo.put(personalzeParams, function (err, data) {
             if (err) {
                 console.log('Failure: ' + err);
             }
             else {
-                console.log('dynamodb put result: ' + JSON.stringify(data));
+                // console.log('dynamodb put result: ' + JSON.stringify(data));
             }
         });
 
@@ -92,8 +92,8 @@ exports.handler = async (event, context) => {
         try {
             dynamoQuery = await dynamo.query(queryParams).promise();
 
-            console.log('queryDynamo: '+JSON.stringify(dynamoQuery));
-            console.log('queryDynamo: '+dynamoQuery.Count);      
+            // console.log('queryDynamo: '+JSON.stringify(dynamoQuery));
+            // console.log('queryDynamo: '+dynamoQuery.Count);      
         } catch (error) {
             console.log(error);
             return;
@@ -123,10 +123,10 @@ exports.handler = async (event, context) => {
                         impression: impression,
                     }],
                 };
-                console.log('event params: ', JSON.stringify(params));
+                // console.log('event params: ', JSON.stringify(params));
 
                 const result = await personalizeevents.putEvents(params).promise();
-                console.log('putEvent result: ' + JSON.stringify(result));
+                // console.log('putEvent result: ' + JSON.stringify(result));
 
                 let impressionStr = "";
                 if(impression.length==1) {
@@ -140,7 +140,7 @@ exports.handler = async (event, context) => {
                     }
                     impressionStr += impression[i]
                 }
-                console.log('impressionStr: ' + impressionStr); 
+                // console.log('impressionStr: ' + impressionStr); 
                 
                 // DynamodB for personalize interactions
                 var personalzeParams = {
@@ -153,14 +153,14 @@ exports.handler = async (event, context) => {
                         IMPRESSION: impressionStr,
                     }
                 };
-                console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
+                // console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
 
                 dynamo.put(personalzeParams, function (err, data) {
                     if (err) {
                         console.log('Failure: ' + err);
                     }
                     else {
-                        console.log('dynamodb put result: ' + JSON.stringify(data));
+                        // console.log('dynamodb put result: ' + JSON.stringify(data));
                     }
                 });        
 
