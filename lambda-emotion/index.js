@@ -1,14 +1,7 @@
 const aws = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
-
 const s3 = new aws.S3();
-const personalizeevents = new aws.PersonalizeEvents();
-const sqs = new aws.SQS({apiVersion: '2012-11-05'});
-
 const bucketName = process.env.bucketName;
-const datasetArn = process.env.datasetArn;
-const userTableName = process.env.userTableName;
-const dynamo = new aws.DynamoDB.DocumentClient();
 
 exports.handler = async (event, context) => {
     // console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
@@ -134,55 +127,6 @@ exports.handler = async (event, context) => {
                 statusCode: 200,
                 body: JSON.stringify(emotionInfo)
             };
-
-            // create user dataset
-            try {
-                var params = {
-                    datasetArn: datasetArn,
-                    users: [{
-                        userId: userId,
-                        properties: {
-                        //    "GENERATION": generation,
-                            "GENDER": gender,
-                            "EMOTION": emotions
-                        }
-                    }]
-                };
-                console.log('user params: ', JSON.stringify(params));
-
-                const result = await personalizeevents.putUsers(params).promise(); 
-                console.log('putUser result: '+JSON.stringify(result));                
-            } catch (error) {
-                console.log(error);
-
-                response = {
-                    statusCode: 500,
-                    body: error
-                };
-            }
-
-            // DynamodB for personalize users
-            var personalzeParams = {
-                TableName: userTableName,
-                Item: {
-                    USER_ID: userId,
-                    // GENERATION: generation,
-                    GENDER: gender,
-                    EMOTION: emotions,
-                }
-            };
-            console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
-
-            dynamo.put(personalzeParams, function (err, data) {
-                if (err) {
-                    console.log('Failure: ' + err);
-                }
-                else {
-                    console.log('dynamodb put result: ' + JSON.stringify(data));
-
-                    isCompleted = true;
-                }
-            });
 
             // delete profile image
             try {

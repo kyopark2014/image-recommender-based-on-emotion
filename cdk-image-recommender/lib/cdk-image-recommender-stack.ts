@@ -432,7 +432,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       }),
     );
 
-    // emotion
     // Lambda - emotion
     const lambdaEmotion = new lambda.Function(this, "lambdaEmotion", {
       runtime: lambda.Runtime.NODEJS_16_X,
@@ -443,8 +442,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         bucketName: s3Bucket.bucketName,
-        datasetArn: userDataset.attrDatasetArn,
-        userTableName: userTableName
       }
     });
     s3Bucket.grantReadWrite(lambdaEmotion);
@@ -458,13 +455,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       new iam.Policy(this, 'rekognition-policy', {
         statements: [RekognitionPolicy],
       }),
-    );
-    
-    lambdaEmotion.role?.attachInlinePolicy(
-      new iam.Policy(this, 'personalize-policy-for-lambdaEmotion', {
-        statements: [PersonalizePolicy],
-      }),
-    );
+    );    
 
     // POST method
     const resourceName = "emotion";
@@ -489,6 +480,54 @@ export class CdkImageRecommenderStack extends cdk.Stack {
 
     // cloudfront setting for api gateway of emotion
     distribution.addBehavior("/emotion", new origins.RestApiOrigin(api), {
+      cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
+      allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
+      viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+    });
+
+    // Lambda - createUser
+    const lambdaCreateUser = new lambda.Function(this, "lambdaCreateUser", {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      functionName: "lambda-createUser",
+      code: lambda.Code.fromAsset("../lambda-createUser"),
+      handler: "index.handler",
+      timeout: cdk.Duration.seconds(10),
+      logRetention: logs.RetentionDays.ONE_DAY,
+      environment: {
+        datasetArn: userDataset.attrDatasetArn,
+        userTableName: userTableName
+      }
+    });
+    userDataTable.grantReadWriteData(lambdaCreateUser); // permission for dynamo
+    
+    lambdaCreateUser.role?.attachInlinePolicy(
+      new iam.Policy(this, 'personalize-policy-for-lambdaEmotion', {
+        statements: [PersonalizePolicy],
+      }),
+    );
+
+    // POST method
+    const createUser = api.root.addResource("createUser");
+    createUser.addMethod('POST', new apiGateway.LambdaIntegration(lambdaCreateUser, {
+      passthroughBehavior: apiGateway.PassthroughBehavior.WHEN_NO_TEMPLATES,
+      credentialsRole: role,
+      integrationResponses: [{
+        statusCode: '200',
+      }],
+      proxy: true,
+    }), {
+      methodResponses: [
+        {
+          statusCode: '200',
+          responseModels: {
+            'application/json': apiGateway.Model.EMPTY_MODEL,
+          },
+        }
+      ]
+    });
+
+    // cloudfront setting for api gateway of createUser
+    distribution.addBehavior("/lambdaCreateUser", new origins.RestApiOrigin(api), {
       cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
       allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
       viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
