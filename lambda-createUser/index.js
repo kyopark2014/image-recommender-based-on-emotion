@@ -27,68 +27,89 @@ exports.handler = async (event, context) => {
     let response = "";
     let isCompleted = false;
 
-    // check the user's existence. if not, create a user 
-    // create the user dataset
-    try {
-        var params = {
-            datasetArn: datasetArn,
-            users: [{
-                userId: userId,
-                properties: {
-                //    "GENERATION": generation,
-                    "GENDER": gender,
-                    "EMOTION": emotion
-                }
-            }]
-        };
-        console.log('user params: ', JSON.stringify(params));
-
-        const result = await personalizeevents.putUsers(params).promise(); 
-        console.log('putUser result: '+JSON.stringify(result));                
-    } catch (error) {
-        console.log(error);
-
-        response = {
-            statusCode: 500,
-            body: error
-        };
-    }
-
-    try {
-        // DynamodB for personalize users
-        var personalzeParams = {
+    let queryParams = {
         TableName: userTableName,
-            Item: {
-                USER_ID: userId,
-                // GENERATION: generation,
-                GENDER: gender,
-                EMOTION: emotion,
-            }
-        };
-        console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
+        KeyConditionExpression: "USER_ID = :userId",
+        ExpressionAttributeValues: {
+            ":userId": userId
+        }
+    };
 
-        dynamo.put(personalzeParams, function (err, data) {
-            if (err) {
-                console.log('Failure: ' + err);
-            }
-            else {
-                console.log('dynamodb put result: ' + JSON.stringify(data));
+    // check the user's existence. if not, create a user 
+    let dynamoQuery; 
+    try {
+        dynamoQuery = await dynamo.query(queryParams).promise();
 
-                isCompleted = true;
-            }
-        });
+        console.log('queryDynamo: '+JSON.stringify(dynamoQuery));
+        console.log('queryDynamo: '+dynamoQuery.Count);      
 
-        response = {
-            statusCode: 200,
-            // body: "No Face"
-        };
+        if(dynamoQuery.Count) {
+            // create the user dataset
+            try {
+                var params = {
+                    datasetArn: datasetArn,
+                    users: [{
+                        userId: userId,
+                        properties: {
+                        //    "GENERATION": generation,
+                            "GENDER": gender,
+                            "EMOTION": emotion
+                        }
+                    }]
+                };
+                console.log('user params: ', JSON.stringify(params));
+
+                const result = await personalizeevents.putUsers(params).promise(); 
+                console.log('putUser result: '+JSON.stringify(result));                
+            } catch (error) {
+                console.log(error);
+
+                response = {
+                    statusCode: 500,
+                    body: error
+                };
+            }
+
+            try {
+                // DynamodB for personalize users
+                var personalzeParams = {
+                    TableName: userTableName,
+                    Item: {
+                        USER_ID: userId,
+                        // GENERATION: generation,
+                        GENDER: gender,
+                        EMOTION: emotion,
+                    }
+                };
+                console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
+
+                dynamo.put(personalzeParams, function (err, data) {
+                    if (err) {
+                        console.log('Failure: ' + err);
+                    }
+                    else {
+                        console.log('dynamodb put result: ' + JSON.stringify(data));
+
+                        isCompleted = true;
+
+                        response = {
+                            statusCode: 200,
+                            // body: "No Face"
+                        };
+                    }                    
+                }); 
+            } catch (error) {
+                console.log(error);
+
+                response = {
+                    statusCode: 500,
+                    body: error
+                };
+            }
+        }
     } catch (error) {
         console.log(error);
-
-        response = {
-            statusCode: 500,
-            body: error
-        };
+        return;
     }
     
     function wait() {
