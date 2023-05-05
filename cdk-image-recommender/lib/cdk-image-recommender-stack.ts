@@ -21,7 +21,7 @@ const endpoints = [
   "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
 ]
 const nproc = 1;
-const trackingId = "e8c74dd1-2dbf-4b7f-b582-fdfb1d2f2c88";
+const trackingId = "7ccb2f39-42ff-4c65-b4e9-5ea58ab56e50";
 
 export class CdkImageRecommenderStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
