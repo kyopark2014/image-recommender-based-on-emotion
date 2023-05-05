@@ -924,7 +924,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     }); 
 
     new cdk.CfnOutput(this, 'CopySample', {
-      value: 'aws s3 cp ../sample/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
+      value: 'aws s3 cp ../samples/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
       description: 'copy commend for samples',
     }); 
 
