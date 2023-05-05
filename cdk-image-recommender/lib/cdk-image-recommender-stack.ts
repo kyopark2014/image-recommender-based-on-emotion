@@ -68,11 +68,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       priceClass: cloudFront.PriceClass.PRICE_CLASS_200,
     });
 
-    new cdk.CfnOutput(this, 'distributionDomainName-image-recommender', {
-      value: distribution.domainName,
-      description: 'The domain name of the Distribution',
-    });
-
     // API Gateway
     const role = new iam.Role(this, "api-role-image-recommender", {
       roleName: "api-role-image-recommender",
@@ -550,11 +545,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
         statements: [PersonalizePolicy],
       }),
     );
-    new cdk.CfnOutput(this, 'campaignArn', {
-      value: `arn:aws:personalize:${cdk.Stack.of(this).region}:${cdk.Stack.of(this).account}:campaign/image-recommender-campaign`,
-      description: 'campaignArn',
-    }); 
-
+    
     // POST method
     const gallery = api.root.addResource('gallery');
     gallery.addMethod('POST', new apiGateway.LambdaIntegration(lambdagallery, {
@@ -580,11 +571,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
       allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
       viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-    });
-
-    new cdk.CfnOutput(this, 'galleryWebUrl', {
-      value: 'https://' + distribution.domainName + '/gallery.html',
-      description: 'The web url of gallery',
     });
 
     // Lambda - like
@@ -913,9 +899,9 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // Outputs
-    new cdk.CfnOutput(this, 'apiUrl-image-recommender', {
-      value: api.url,
-      description: 'The url of API Gateway',
+    new cdk.CfnOutput(this, 'distributionDomainName-image-recommender', {
+      value: distribution.domainName,
+      description: 'The domain name of the Distribution',
     });
 
     new cdk.CfnOutput(this, 'CopyHtml', {
@@ -942,15 +928,20 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       value: 'https://' + distribution.domainName + '/datasetGenerator.html',
       description: 'url of dataset generator',
     });
-        
-    new cdk.CfnOutput(this, 'Enabler', {
-      value: 'https://' + distribution.domainName + '/enabler.html',
-      description: 'url of enabler',
-    });
 
     new cdk.CfnOutput(this, 'Gallery', {
       value: 'https://' + distribution.domainName + '/gallery.html',
       description: 'url of gallery',
-    });  
+    }); 
+        
+    new cdk.CfnOutput(this, 'Enabler', {
+      value: 'https://' + distribution.domainName + '/enabler.html',
+      description: 'url of enabler',
+    });     
+
+    new cdk.CfnOutput(this, 'ApiGatewayUrl', {
+      value: api.url,
+      description: 'The url of API Gateway',
+    });
   }
 }
