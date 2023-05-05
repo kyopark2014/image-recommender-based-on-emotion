@@ -60,7 +60,7 @@ form.elements.send.onclick = function () {
         let requestList = [];
         for(let i in emotions) {            
             let gender = "male";          
-            let userId = `${emotions[i]}_${gender}`;
+            let userId = `${emotions[i]}and${gender}`;
             console.log("userId: ", userId);
 
             let requiredDataset = {
@@ -71,7 +71,7 @@ form.elements.send.onclick = function () {
             requestList.push(requiredDataset);
 
             gender = "female";          
-            userId = `${emotions[i]}_${gender}`;
+            userId = `${emotions[i]}and${gender}`;
             console.log("userId: ", userId);
 
             requiredDataset = {
@@ -82,7 +82,7 @@ form.elements.send.onclick = function () {
             requestList.push(requiredDataset);      
             
             gender = "any";          
-            userId = `${emotions[i]}_${gender}`;
+            userId = `${emotions[i]}and${gender}`;
             console.log("userId: ", userId);
 
             requiredDataset = {
@@ -104,7 +104,7 @@ form.elements.send.onclick = function () {
     let requestList = [];  
     for(let i in emotions) {  
         gender = "others";          
-        userId = `male_${gender}`;
+        userId = `maleof${gender}`;
         console.log("userId: ", userId);
 
         requiredDataset = {
@@ -115,7 +115,7 @@ form.elements.send.onclick = function () {
         requestList.push(requiredDataset);
 
         gender = "others";          
-        userId = `female_${gender}`;
+        userId = `femaleof${gender}`;
         console.log("userId: ", userId);
 
         requiredDataset = {
