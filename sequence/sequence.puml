@@ -23,7 +23,7 @@ skinparam participant {
 'Hide the bottom boxes
 hide footbox
 
-actor Administrator as admin
+actor Admin as admin
 actor User as user
 participant "<color:#magenta><$CloudFront></color>\nAmazon CloudFront" as cdn
 participant "<color:#red><$APIGateway>\nAmazon API Gateway" as api
@@ -33,104 +33,63 @@ participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(s3-event)" as lam
 participant "<color:#green><$Rekognition></color>\nAmazon\nRekognition" as rekognition
 participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(gallery)" as lambdaGallery
 participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(like)" as lambdaLike
+participant "<color:#magenta><$SQS></color>\nAmazon SQS\nFIFO" as sqs
+participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(putItem)" as lambdaPutItem
 participant "<color:#green><$Personalize></color>\nPersonalize" as personalize
 
-participant "<color:#magenta><$SQS></color>\nAmazon SQS\nRekognition" as sqsRekognition
-participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(Rekognition)" as lambdaRekognition
-participant "<color:#magenta><$SQS></color>\nAmazon SQS\nPolly" as sqsPolly
-participant "Email Server\n<color:#232F3E><$InternetGateway></color>" as pop3
-
-
-admin -> s3: images
-s3 -> admin
-s3 -> lambdaS3Event ++: putEvent
-lambdaS3Event -> personalize ++: putItems
-personalize -> lambdaS3Event --
+'/ admin /'
+admin -> s3 ++: copy images manually
+s3 -> admin --
+s3 -> lambdaS3Event ++: object event
+lambdaS3Event -> sqs ++: object info
+sqs -> lambdaS3Event --
 lambdaS3Event -> s3 --
 
-user -> cdn: emotion Image\nPOST /emotion
+sqs -> lambdaPutItem ++: object info
+lambdaPutItem -> personalize ++: putItems
+personalize -> lambdaPutItem --
+lambdaPutItem -> sqs --
 
-cdn -> api: invoke lambda
 
+'/ user /'
+user -> cdn: POST /emotion
+cdn -> api: /emotion
 api -> lambdaEmotion ++ : /emotion
-
 lambdaEmotion -> s3 ++: putObject
 s3 --> lambdaEmotion --: 
 
 
-lambdaEmotion -> rekognition ++: image 
-rekognition -> lambdaEmotion --: userId/emotion
+lambdaEmotion -> rekognition ++: detectFaces 
+rekognition -> lambdaEmotion --: 200OK (emotion)
+
+lambdaEmotion -> rekognition ++: searchFaces 
+rekognition -> lambdaEmotion --: 200OK (userId)
 
 lambdaEmotion -> personalize ++: putUsers
 personalize -> lambdaEmotion --:
-
-lambdaEmotion -> api -- : 200OK
-
-
-api -> cdn: 200OK
-
-cdn -> user: 200OK
+lambdaEmotion -> s3 ++: deleteObject
+s3 --> lambdaEmotion --: 
+lambdaEmotion -> api -- : 200OK (userId, emotion)
+api -> cdn: 200OK (userId, emotion)
+cdn -> user: 200OK (userId, emotion)
 
 
-user -> cdn: POST /gallery
+user -> cdn: POST /gallery (emotion)
 cdn -> api: /gallery (emotion)
 api -> lambdaGallery: /gallery (emotion)
-lambdaGallery -> personalize ++: getRecommendations (userId)
-personalize -> lambdaGallery --: 200OK (JSON)
-lambdaGallery -> api: 200OK (JSON)
-api -> cdn: 200OK (JSON)
-cdn -> user: 200OK (JSON)
+lambdaGallery -> personalize ++: getRecommendations
+personalize -> lambdaGallery --: 200OK (items)
+lambdaGallery -> api: 200OK (Items)
+api -> cdn: 200OK (items)
+cdn -> user: 200OK (items)
 
-user -> cdn: POST /like
-cdn -> api: /like
-api -> lambdaLike++ : /like
+user -> cdn: POST /like (userId, item)
+cdn -> api: /like (userId, item)
+api -> lambdaLike++ : /like (userId, item)
 lambdaLike -> personalize ++: putEvents
 personalize -> lambdaLike --: 200OK
 lambdaLike -> api --: 200OK
 api -> cdn: 200OK
 cdn -> user: 200OK
 
-
-
-
-/' 
-#lambdaUpload -> sqsRekognition -- : event (bucket, key)
-
-#sqsRekognition -> lambdaRekognition ++ : event (bucket, key)
-
-#lambdaRekognition -> rekognition ++: request (bucket, key)
-
-#rekognition -> rekognition : Image to JSON
-
-#rekognition -> lambdaRekognition -- : 200OK (JSON)
-
-#lambdaRekognition -> lambdaRekognition : JSON to text
-
-
-#lambdaRekognition -> sqsPolly -- : event (text)
-
-#sqsPolly -> lambdaPolly ++ : event (text)
-
-
-#lambdaPolly -> polly ++ : request\n(text, dest bucket)
-
-#polly -> polly : test to voice
-
-#polly -> s3 : upload mp3
-
-#polly -> lambdaPolly --: url
-
-#lambdaPolly -> sns --: publish url
-
-#sns -> pop3 : request Email
-
-#pop3 -> user : Email notification
-
-#user -> cdn : request to download
-
-#cdn -> s3: load mp3
-#s3 --> cdn : 
-
-#cdn -> user : 200OK with mp3
-'/ 
 @enduml
