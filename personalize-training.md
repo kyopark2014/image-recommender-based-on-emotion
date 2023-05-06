@@ -112,3 +112,10 @@ https://d14j04tdmh4c1d.cloudfront.net/enabler.html
     ]
 }
 ```
+
+## Solution / Campaign 생성
+
+[Solution Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여, 이미 생성한 dataset인 "image-recommender-dataset"을 선택하여 진입한 후에 [Create solution]을 선택합니다. 이후 아래와 같이 [Solution name]으로 "image-recommender-solution"을 입력하고 [Solution type]으로 "Item recommendation"을 선택한 다음에 [Recipe]로 "aws-user-personalization"을 선택합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/236587663-303ddd63-7d15-4c08-854a-6bc83e71114e.png)
+
