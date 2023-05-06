@@ -157,7 +157,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // Lambda for bulk-stable-diffusion    
-  /*  const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
+    const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
       actions: ['sagemaker:*'],
       resources: ['*'],
     });
@@ -942,6 +942,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'ApiGatewayUrl', {
       value: api.url,
       description: 'The url of API Gateway',
-    }); */
+    }); 
   } 
 }
