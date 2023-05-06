@@ -20,7 +20,7 @@
 
 전체적인 flow는 아래를 참조합니다.
 
-![noname](https://user-images.githubusercontent.com/52392004/236624188-6228237a-ed95-4b4b-bd8b-aa0a4ab3cc48.png)
+![sequence](https://user-images.githubusercontent.com/52392004/236651082-31086a0a-cf6f-4751-b44f-79a70430f95c.png)
 
 
 ## SageMaker JumpStart로 Stable Diffusion 설치
