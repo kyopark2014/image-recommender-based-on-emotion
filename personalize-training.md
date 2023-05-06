@@ -123,4 +123,13 @@ https://d14j04tdmh4c1d.cloudfront.net/enabler.html
 
 ![noname](https://user-images.githubusercontent.com/52392004/236587663-303ddd63-7d15-4c08-854a-6bc83e71114e.png)
 
+왼쪽 메뉴에서 아래와 같이 [Campaigns]를 선택한 후에 [Create campaign]을 선택합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/236588384-30301d37-b432-4ebc-9914-f43438e06005.png)
+
+아래와 같이 [Campaign name]으로 "image-recommender-campaign"으로 입력한 후에 [Solution]으로 "image-recommender-solution"을 선택합니다. 이후 [Create campaign]을 선택하면 약 10분 정도후에 Campaign이 생성합니다.  
+
+![noname](https://user-images.githubusercontent.com/52392004/236588352-c2f038f8-c456-424d-b2f5-f4d3134d8f7f.png)
+
+
 
