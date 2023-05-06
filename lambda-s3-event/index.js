@@ -51,7 +51,6 @@ exports.handler = async (event, context) => {
             const timestamp = Math.floor(date.getTime()/1000.0);
             console.log('timestamp: ', timestamp);
 
-            // putItem to DynamoDB            
             let searchKey;
             if (splitKey.length >= 4) {
                 searchKey = emotion + '/' + favorite;

@@ -60,7 +60,7 @@ form.elements.send.onclick = function () {
         let requestList = [];
         for(let i in emotions) {            
             let gender = "male";          
-            let userId = `${emotions[i]}and${gender}`;
+            let userId = `${emotions[i]}/${gender}`;
             console.log("userId: ", userId);
 
             let requiredDataset = {
@@ -71,7 +71,7 @@ form.elements.send.onclick = function () {
             requestList.push(requiredDataset);
 
             gender = "female";          
-            userId = `${emotions[i]}and${gender}`;
+            userId = `${emotions[i]}/${gender}`;
             console.log("userId: ", userId);
 
             requiredDataset = {
@@ -82,7 +82,7 @@ form.elements.send.onclick = function () {
             requestList.push(requiredDataset);      
             
             gender = "any";          
-            userId = `${emotions[i]}and${gender}`;
+            userId = `${emotions[i]}/${gender}`;
             console.log("userId: ", userId);
 
             requiredDataset = {
@@ -98,13 +98,13 @@ form.elements.send.onclick = function () {
         msglist[msgCnt++].innerHTML = htmlsrc;
 
         generateDataset(requestList);   
-        sleep(2000);   
+        sleep(500);   
     }
 
     let requestList = [];  
     for(let i in emotions) {  
         gender = "others";          
-        userId = `maleof${gender}`;
+        userId = `${emotions[i]}/${gender}`;
         console.log("userId: ", userId);
 
         requiredDataset = {
@@ -115,7 +115,7 @@ form.elements.send.onclick = function () {
         requestList.push(requiredDataset);
 
         gender = "others";          
-        userId = `femaleof${gender}`;
+        userId = `${emotions[i]}/${gender}`;
         console.log("userId: ", userId);
 
         requiredDataset = {
