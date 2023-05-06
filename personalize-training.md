@@ -115,7 +115,12 @@ https://d14j04tdmh4c1d.cloudfront.net/enabler.html
 
 ## Solution / Campaign 생성
 
-[Solution Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여, 이미 생성한 dataset인 "image-recommender-dataset"을 선택하여 진입한 후에 [Create solution]을 선택합니다. 이후 아래와 같이 [Solution name]으로 "image-recommender-solution"을 입력하고 [Solution type]으로 "Item recommendation"을 선택한 다음에 [Recipe]로 "aws-user-personalization"을 선택합니다.
+[Dataset groups Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여 "image-recommender-dataset"로 접속하여 왼쪽 메뉴의 [Datasets] - [Data analysis]을 선택한 후에 [Run analysis]을 선택하여 분석합니다. 분석 결과(Insights)에서 User의 숫자가 25이하, interaction이 1000이하로 알림이 발생하면, Personalize에서 입력한 데이터가 분석중이므로 수분 정도 대기한 후에 재시도 합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/236587998-9eb43e7d-8a70-405b-a375-0e5cd4443f69.png)
+
+[Solution Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여, 이미 생성한 dataset인 "image-recommender-dataset"을 선택하여 진입한 후에 [Create solution]을 선택합니다. 이후 아래와 같이 [Solution name]으로 "image-recommender-solution"을 입력하고 [Solution type]으로 "Item recommendation"을 선택한 다음에 [Recipe]로 "aws-user-personalization"을 선택합니다. Solution 생성에는 약 20분정도가 소요됩니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/236587663-303ddd63-7d15-4c08-854a-6bc83e71114e.png)
+
 
