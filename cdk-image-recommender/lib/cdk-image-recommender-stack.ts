@@ -942,6 +942,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'ApiGatewayUrl', {
       value: api.url,
       description: 'The url of API Gateway',
-    }); 
-  } */
+    }); */
+  } 
 }
