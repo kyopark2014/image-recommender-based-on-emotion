@@ -156,7 +156,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
     });
 
-    /*
     // Lambda for bulk-stable-diffusion    
     const SageMakerPolicy = new iam.PolicyStatement({  // policy statement for sagemaker
       actions: ['sagemaker:*'],
@@ -943,6 +942,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'ApiGatewayUrl', {
       value: api.url,
       description: 'The url of API Gateway',
-    }); */
+    }); 
   }
 }
