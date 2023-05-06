@@ -18,6 +18,11 @@
 5) 생성된 데이터로 Solution, Campaign을 생성합니다.
 6) 클라이언트를 이용하여 감성기반의 이미지 추천을 활용합니다.
 
+전체적인 flow는 아래를 참조합니다.
+
+![noname](https://user-images.githubusercontent.com/52392004/236624188-6228237a-ed95-4b4b-bd8b-aa0a4ab3cc48.png)
+
+
 ## SageMaker JumpStart로 Stable Diffusion 설치
 
 [Stable Diffusion 인프라 설치](./stable-diffusion-deployment.md)를 참조하여 Stable Diffusion을 위한 SageMaker Endpoint를 생성합니다. 
