@@ -30,14 +30,18 @@
 
 ### 사용(userId)자 구분하기
 
+[사용자 정보 수집](./personalize-user.md)에서는 Personalize에서 사용되는 사용자의 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
 ### 아이템(Item) 정보 수집
 
-[Item 정보 수집](./personalize-item.md)에서는 Personalize에 사용되는 아이템 정보의 Schema와 수집방법에 대해 설명합니다.
+[Item 정보 수집](./personalize-item.md)에서는 Personalize에서 사용되는 아이템 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
-### Interaction 정보 수집
+### 상호작용(Interaction) 정보 수집
+
+[Interaction 정보 수집](./personalize-ㅑnteraction.md)에서는 Personalize에서 사용되는 상호작용 정보의 Schema와 수집방법에 대해 설명합니다.
+
 
 ### 추천 Inference 구현
 
