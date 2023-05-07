@@ -40,7 +40,7 @@
 
 ### 상호작용(Interaction) 정보 수집
 
-[Interaction 정보 수집](./personalize-ㅑnteraction.md)에서는 Personalize에서 사용되는 상호작용 정보의 Schema와 수집방법에 대해 설명합니다.
+[Interaction 정보 수집](./personalize-interaction.md)에서는 Personalize에서 사용되는 상호작용 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
 ### 추천 Inference 구현
