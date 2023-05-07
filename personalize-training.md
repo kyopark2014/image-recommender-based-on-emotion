@@ -25,7 +25,7 @@ Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interacti
 
 ### Enabler 이용한 DataSet 
 
-Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다. Enabler의 접속은 Output의 주소 "Enabler"를 이용합니다. Enabler를 이용하여 25명에 대한 1000개의 interaction 데이터셋을 수집하는것은 많은 시간이 소요되므로 아래와 같이 준비된 데이터셋을 사용합니다.
+Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자의 선호를 like API를 이용해 수집합니다. Enabler의 접속은 Output의 주소 "Enabler"를 이용합니다. Enabler를 이용하여 25명에 대한 1000개의 interaction 데이터셋을 수집하는것은 많은 시간이 소요되므로 아래와 같이 준비된 데이터셋을 사용합니다.
 
 ### 준비된 데이터셋를 이용
 
