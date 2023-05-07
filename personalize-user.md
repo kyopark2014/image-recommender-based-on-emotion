@@ -62,3 +62,21 @@ if (!dynamoQuery.Count) {
     await personalizeevents.putUsers(params).promise();
 }
 ```
+
+## 사용자 데이터셋 정의
+
+[CDK stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서는 아래와 같이 사용자 스키마로 사용자 데이터셋을 정의합니다.
+
+```java
+const userSchema = new personalize.CfnSchema(this, 'UserSchema', {
+  name: 'emotion-garden-user-schema',
+  schema: userSchemaJson,
+});
+
+const userDataset = new personalize.CfnDataset(this, 'UserDataset', {
+  datasetGroupArn: datasetGroup.attrDatasetGroupArn,
+  datasetType: 'Users',
+  name: 'emotion-garden-user-dataset',
+  schemaArn: userSchema.attrSchemaArn,
+});
+```
