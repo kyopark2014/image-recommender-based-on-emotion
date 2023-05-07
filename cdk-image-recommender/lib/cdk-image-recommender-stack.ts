@@ -899,11 +899,6 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // Outputs
-    new cdk.CfnOutput(this, 'distributionDomainName-image-recommender', {
-      value: distribution.domainName,
-      description: 'The domain name of the Distribution',
-    });
-
     new cdk.CfnOutput(this, 'CopyHtml', {
       value: 'aws s3 cp ../html/ ' + 's3://' + s3Bucket.bucketName + '/ --recursive',
       description: 'copy commend for data',
