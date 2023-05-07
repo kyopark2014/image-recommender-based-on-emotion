@@ -522,7 +522,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     });
 
     // cloudfront setting for api gateway of createUser
-    distribution.addBehavior("/lambdaCreateUser", new origins.RestApiOrigin(api), {
+    distribution.addBehavior("/createUser", new origins.RestApiOrigin(api), {
       cachePolicy: cloudFront.CachePolicy.CACHING_DISABLED,
       allowedMethods: cloudFront.AllowedMethods.ALLOW_ALL,
       viewerProtocolPolicy: cloudFront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,

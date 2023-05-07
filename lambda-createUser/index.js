@@ -12,17 +12,17 @@ exports.handler = async (event, context) => {
 
     const body = Buffer.from(event["body"], "base64");
     // console.log('body: ' + body)
-    const header = event['multiValueHeaders'];
+    //const header = event['multiValueHeaders'];
     // console.log('header: ' + JSON.stringify(header));
 
     const userId = body['userId'];
-    console.log('userId: ' + userId)
+    console.log('userId: ' + userId);
 
     const gender = body['gender'];
-    console.log('gender: ' + gender)
+    console.log('gender: ' + gender);
 
     const emotion = body['emotion'];
-    console.log('emotion: ' + emotion)
+    console.log('emotion: ' + emotion);
 
     let response = "";
     let isCompleted = false;
@@ -131,5 +131,3 @@ exports.handler = async (event, context) => {
     console.debug('response: ' + JSON.stringify(response));
     return response;
 };
-
-

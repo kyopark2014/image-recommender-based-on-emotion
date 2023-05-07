@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
         console.log('bucket: ' + bucket);
         console.log('key: ' + key);
 
-        var splitKey = key.split("/");
+        let splitKey = key.split("/");
         console.log('splitKey: ' + splitKey);
         console.log('length: ' + splitKey.length);
 
