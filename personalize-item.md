@@ -106,3 +106,21 @@ var params = {
 
 await personalizeevents.putItems(params).promise(); 
 ```
+
+## 아이템 데이터셋 정의
+
+[CDK stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서는 아래와 같이 아이템 스키마로 아이템 데이터셋을 정의합니다.
+
+```java
+const itemSchema = new personalize.CfnSchema(this, 'ItemSchema', {
+  name: 'emotion-garden-itemSchema',
+  schema: itemSchemaJson,
+});
+
+const itemDataset = new personalize.CfnDataset(this, 'ItemDataset', {
+  datasetGroupArn: datasetGroup.attrDatasetGroupArn,
+  datasetType: 'Items',
+  name: 'emotion-garden-itemDataset',
+  schemaArn: itemSchema.attrSchemaArn,
+});
+```
