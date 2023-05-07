@@ -56,7 +56,7 @@ exports.handler = async (event, context) => {
     let isCompleted = false;
     // put event dataset
     try {
-        var params = {            
+        let params = {            
             sessionId: itemId,
             trackingId: trackingId,
             userId: userId,
@@ -89,7 +89,7 @@ exports.handler = async (event, context) => {
         console.log('impressionStr: ' + impressionStr);
         
         // DynamodB for personalize interactions
-        var personalzeParams = {
+        let personalzeParams = {
             TableName: interactionTableName,
             Item: {
                 USER_ID: userId,
