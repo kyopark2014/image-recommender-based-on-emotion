@@ -10,3 +10,4 @@
 
 [class CfnCollection (construct)](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rekognition.CfnCollection.html)
 
+[SearchFacesByImage](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html)
