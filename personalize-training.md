@@ -25,9 +25,9 @@ Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interacti
 
 ### Enabler 이용한 DataSet 
 
-Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다.
+Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다. Enabler의 접속은 Output의 주소 "Enabler"를 이용합니다. Enabler를 이용하여 25명에 대한 1000개의 interaction 데이터셋을 수집하는것은 많은 시간이 소요되므로 아래와 같이 준비된 데이터셋을 사용합니다.
 
-### 준비된 데이터를 이용
+### 준비된 데이터셋를 이용
 
 Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 여기서 S3 bucket 이름은 "s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc"이므로 아래와 같이 samples에 있는 데이터를 S3로 복사합니다. 
 
@@ -37,7 +37,7 @@ Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset
 
 ![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
 
-Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감성(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction dataset을 생성합니다.
+Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감성(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
 
 
 #### Enabler를 이용한 User, Interaction 데이터 수집
