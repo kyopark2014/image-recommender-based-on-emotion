@@ -113,14 +113,14 @@ await personalizeevents.putItems(params).promise();
 
 ```java
 const itemSchema = new personalize.CfnSchema(this, 'ItemSchema', {
-  name: 'emotion-garden-itemSchema',
+  name: 'image-recommender-itemSchema',
   schema: itemSchemaJson,
 });
 
 const itemDataset = new personalize.CfnDataset(this, 'ItemDataset', {
   datasetGroupArn: datasetGroup.attrDatasetGroupArn,
   datasetType: 'Items',
-  name: 'emotion-garden-itemDataset',
+  name: 'image-recommender-itemDataset',
   schemaArn: itemSchema.attrSchemaArn,
 });
 ```
