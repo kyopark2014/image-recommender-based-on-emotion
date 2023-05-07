@@ -34,6 +34,7 @@
 
 ### 아이템(Item) 정보 수집
 
+[Item 정보 수집](./personalize-item.md)에서는 Personalize에 사용되는 아이템 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
 ### Interaction 정보 수집
