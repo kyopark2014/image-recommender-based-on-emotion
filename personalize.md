@@ -7,35 +7,7 @@
 
 ### Schema
 
-```java
-{
-    "type": "record",
-    "name": "Users",
-    "namespace": "com.amazonaws.personalize.schema",
-    "fields": [
-        {
-            "name": "USER_ID",
-            "type": "string"
-        },
-        {
-            "name": "GENERATION",
-            "type": "string",
-            "categorical": true
-        },
-        {
-            "name": "GENDER",
-            "type": "string",
-            "categorical": true
-        },
-        {
-            "name": "EMOTION",
-            "type": "string",
-            "categorical": true
-        }
-    ],
-    "version": "1.0"
-}
-```
+
 
 ### 구현
 
