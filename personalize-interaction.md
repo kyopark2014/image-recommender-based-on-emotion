@@ -1,8 +1,8 @@
-# Personalize의 상호작용(interacion) 정보 수집
+# Personalize의 상호작용(interaction) 정보 수집
 
 사용자의 event를 상호작용(interaction)으로 등록하여 개인화 추천에 사용합니다.
 
-## 상호작용(interacion) Metadata
+## 상호작용(interaction) Metadata
 
 Personalize의 사용자(User)에 대한 메타 정보는 USER_ID, GENDER, EMOTION 으로 구성됩니다. 
 
