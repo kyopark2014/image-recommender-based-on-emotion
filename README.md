@@ -4,6 +4,9 @@
 
 감성을 표현하는 이미지는 Amazon SageMaker의 JumpStart의 Stable Diffusion 모델을 이용해 생성합니다. Stable Diffision 모델은 텍스트로 이미지를 생성하는 기초 모델 (Foundation Model)으로서, SageMaker JumpStart를 이용하면 이미지를 생성하는 Endpoint를 쉽게 만들어 활용할 수 있습니다. 
 
+개인화 추천의 경우에 이전 사용자의 상호작용(interaction)을 이용하여 추천을 수행하게 되는데, 이전 히스토리가 없는 경우에는 감정으로 추천을 수행할 수 없으므로 상대적으로 최근에 들어온 아이템을 추천하게 되어 추천의 정확도가 떨어집니다. 따라서 여기에서는 이전 히스토리가 없는 경우에는 감성 정보를 Personalize에 미리 학습한 데이터를 이용하여 "감성 추천"을 수행하고, 일정 데이터가 확보되었을때 "개인화 추천"을 수행하는 방법을 설명합니다. 
+
+
 아래는 사용자의 감정에 따라 이미지를 추천하는 시스템 아키텍처를 소개합니다. 
 
 ![image](https://user-images.githubusercontent.com/52392004/233784271-75654db5-b939-4de4-a369-a0998f859156.png)
@@ -49,7 +52,7 @@
 
 ### 추천 Inference 구현
 
-[추천 추론](./recommendation.md)에서는 Personalize로 부터 추론(inference) 요청하는것에 대해 설명합니다.
+[추천 추론](./recommendation.md)에서는 Personalize로 부터 추론(inference) 요청하는것에 대해 설명합니다. 이때 "감정 추천"의 경우에는 미리 감정에 따라 추천을 수행하고, "개인화 추천"은 "감정 추천"을 통해 사용자의 상호작용 데이터가 충분히 확보되면 "개인화 추천"을 수행할 수 있습니다. 
 
 
 
