@@ -45,7 +45,7 @@
 
 ### 추천 Inference 구현
 
-
+[추천 추론](./recommendation.md)에서는 Personalize로 부터 추론(inference) 요청하는것에 대해 설명합니다.
 
 
 
