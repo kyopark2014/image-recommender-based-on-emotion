@@ -7,3 +7,5 @@
 [Searching faces in a collection](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)
 
 [interface FaceSearchSettingsProperty](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rekognition.CfnStreamProcessor.FaceSearchSettingsProperty.html)
+
+[CreateCollection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateCollection.html)
