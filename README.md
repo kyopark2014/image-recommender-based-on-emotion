@@ -26,9 +26,15 @@
 
 ### 감성(emotion) 확인하기
 
+[감정 분석](./face-search.md)에서는 [Rekognition의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용하여 사용자의 감성 및 성별을 확인하는 방법에 대해 설명합니다.
+
 ### 사용(userId)자 구분하기
 
+
+
 ### 아이템(Item) 정보 수집
+
+
 
 ### Interaction 정보 수집
 
