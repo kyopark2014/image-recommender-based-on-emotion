@@ -69,14 +69,14 @@ if (!dynamoQuery.Count) {
 
 ```java
 const userSchema = new personalize.CfnSchema(this, 'UserSchema', {
-  name: 'emotion-garden-user-schema',
+  name: 'image-recommender-user-schema',
   schema: userSchemaJson,
 });
 
 const userDataset = new personalize.CfnDataset(this, 'UserDataset', {
   datasetGroupArn: datasetGroup.attrDatasetGroupArn,
   datasetType: 'Users',
-  name: 'emotion-garden-user-dataset',
+  name: 'image-recommender-user-dataset',
   schemaArn: userSchema.attrSchemaArn,
 });
 ```
