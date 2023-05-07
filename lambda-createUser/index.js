@@ -7,13 +7,13 @@ const userTableName = process.env.userTableName;
 const dynamo = new aws.DynamoDB.DocumentClient();
 
 exports.handler = async (event, context) => {
-    // console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
-    // console.log('## EVENT: ' + JSON.stringify(event))
+    //console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
+    //console.log('## EVENT: ' + JSON.stringify(event));
 
-    const body = Buffer.from(event["body"], "base64");
-    // console.log('body: ' + body)
+    const body = JSON.parse(Buffer.from(event["body"], "base64"));
+    //console.log('body: ' + JSON.stringify(body));
     //const header = event['multiValueHeaders'];
-    // console.log('header: ' + JSON.stringify(header));
+    //console.log('header: ' + JSON.stringify(header));
 
     const userId = body['userId'];
     console.log('userId: ' + userId);
@@ -43,15 +43,14 @@ exports.handler = async (event, context) => {
         console.log('queryDynamo: '+JSON.stringify(dynamoQuery));
         console.log('queryDynamo: '+dynamoQuery.Count);      
 
-        if(dynamoQuery.Count) {
+        if(!dynamoQuery.Count) {
             // create the user dataset
             try {
-                var params = {
+                let params = {
                     datasetArn: datasetArn,
                     users: [{
                         userId: userId,
                         properties: {
-                        //    "GENERATION": generation,
                             "GENDER": gender,
                             "EMOTION": emotion
                         }
@@ -72,11 +71,10 @@ exports.handler = async (event, context) => {
 
             try {
                 // DynamodB for personalize users
-                var personalzeParams = {
+                let personalzeParams = {
                     TableName: userTableName,
                     Item: {
                         USER_ID: userId,
-                        // GENERATION: generation,
                         GENDER: gender,
                         EMOTION: emotion,
                     }
@@ -94,7 +92,11 @@ exports.handler = async (event, context) => {
 
                         response = {
                             statusCode: 200,
-                            // body: "No Face"
+                            body: JSON.stringify({
+                                userId: userId,
+                                gender: gender,
+                                emotion: emotion,
+                            })
                         };
                     }                    
                 }); 
@@ -131,3 +133,5 @@ exports.handler = async (event, context) => {
     console.debug('response: ' + JSON.stringify(response));
     return response;
 };
+
+

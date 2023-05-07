@@ -168,10 +168,6 @@ function getEmotion() {
             // profileInfo_features.innerHTML = ""
         }
     };
-
-    previewUrl = [];
-    previewlist = [];
-
     // console.log('uuid: ', uuid);
 
     for (let i = 0; i < maxImgItems; i++) {
@@ -234,16 +230,8 @@ function drawGallery(emotionValue) {
             console.log("--> responseText: " + xhr.responseText);
             let response = JSON.parse(xhr.responseText)
 
-            let landscape = response['landscape'];
-            console.log("landscape: " + JSON.stringify(landscape));
-            let portrait = response['portrait'];
-            console.log("portrait: " + JSON.stringify(portrait));
-
-            for (let i in landscape) {
-                previewUrl.push(landscape[i]);                
-            }
-            for (let i in portrait) {
-                previewUrl.push(portrait[i]);                
+            for (let i in response) {
+                previewUrl.push(response[i]);                
             }
 
             // draw
@@ -277,7 +265,7 @@ function drawGallery(emotionValue) {
 }
 
 function sendLike(userId, itemId, impression) {
-    const url = "/like";
+    const url = "like";
     const xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
