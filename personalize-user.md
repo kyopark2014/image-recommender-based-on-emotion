@@ -1,10 +1,10 @@
 # Personalize의 User 정보 수집
 
-사용자 정보의 수집
+얼굴로 인식한 사용자 정보를 Personalize에 사용자(User)로 등록합니다.
 
 ## 사용자(User) Metadata
 
-사용자에 대한 메타 정보는 USER_ID, GENDER, EMOTION 으로 구성됩니다. 
+Personalize의 사용자(User)에 대한 메타 정보는 USER_ID, GENDER, EMOTION 으로 구성됩니다. 
 
 ```java
 {
