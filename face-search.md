@@ -19,6 +19,7 @@ await s3.putObject(destparams).promise();
 
 [Rekognition의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)을 이용하여 성별(gender)와 감정(emotion)을 얻어옵니다.
 
+```java
 const rekognition = new aws.Rekognition();
 const rekognitionParams = {
     Image: {
