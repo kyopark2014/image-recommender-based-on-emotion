@@ -22,20 +22,38 @@
 
 ![sequence](https://user-images.githubusercontent.com/52392004/236651082-31086a0a-cf6f-4751-b44f-79a70430f95c.png)
 
+## 시스템 구현하기
 
-## SageMaker JumpStart로 Stable Diffusion 설치
+### 감성(emotion) 확인하기
+
+### 사용(userId)자 구분하기
+
+### 아이템(Item) 정보 수집
+
+### Interaction 정보 수집
+
+### 추천 Inference 구현
+
+
+
+
+
+## 직접 실습해 보기
+
+### SageMaker JumpStart로 Stable Diffusion 설치
 
 [Stable Diffusion 인프라 설치](./stable-diffusion-deployment.md)를 참조하여 Stable Diffusion을 위한 SageMaker Endpoint를 생성합니다. 
 
-## Cloud9로 인프라 설치
+### Cloud9로 인프라 설치
 
 [Cloud9로 인프라 설치](./deployment.md)을 참조하여 인프라를 설치합니다.
 
-## 이미지 생성
+### 이미지 생성
 
 [이미지 생성하기](https://github.com/kyopark2014/image-recommender-based-on-emotion/blob/main/image-generation.md)를 따라서 8개 감정에 대한 이미지를 생성합니다. 
 
-## Personalize 학습
+### Personalize 학습
 
 [Personalize 학습](https://github.com/kyopark2014/image-recommender-based-on-emotion/blob/main/personalize-training.md)에서는 추천을 위해 Personlize 환경을 준비하는 과정을 설명합니다.
 
+### 실행하기
