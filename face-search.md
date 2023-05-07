@@ -1,4 +1,4 @@
-# 얼굴 분석 확인하기 
+# 감정 분석  
 
 ## Rekognition의 Facial analysis
 
@@ -38,3 +38,25 @@ if (data['FaceDetails'][0]) {
     const emotions = profile['Emotions'][0]['Type'];
 }
 ```
+
+사용자가 감정 분석을 요청할때는 [gallery.js](./html/gallery.js)의 "getEmotion()"와 같이 REST API를 이용합니다.
+
+```java
+const uri = "emotion";
+const xhr = new XMLHttpRequest();
+
+xhr.open("POST", uri, true);
+xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        let response = JSON.parse(xhr.responseText);
+        
+        gender = response.gender;
+        emotionValue = response.emotions.toLowerCase();
+    }
+};
+
+canvas.toBlob(function (blob) {
+    xhr.send(blob);
+});
+```
+
