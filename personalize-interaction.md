@@ -4,7 +4,7 @@
 
 ## 상호작용(interaction) Metadata
 
-Personalize의 사용자(User)에 대한 메타 정보는 USER_ID, GENDER, EMOTION 으로 구성됩니다. 
+Personalize의 상호작용(interaction)에 대한 메타 정보는 USER_ID, ITEM_ID, TIMESTAMP, EVENT_TYPE, IMPRESSION으로 구성됩니다. 
 
 ```java
 {
