@@ -33,7 +33,7 @@ Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이
 
 aws s3 cp ../samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
 
-Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 참조합니다. 여기서는 "https://d3ehoigkpkljvj.cloudfront.net/datasetGenerator.html"로 접속하여 아래와 같이 [Generate]를 선택합니다.
+Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 참조합니다. 여기서는 "https://d3ehoigkpkljvj.cloudfront.net/datasetGenerator.html" 로 접속하여 아래와 같이 [Generate]를 선택합니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
 
