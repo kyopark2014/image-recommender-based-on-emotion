@@ -73,6 +73,38 @@
 }
 ```
 
+다시 SearchFacesByImage을 수행하면 아래와 같은 결과를 얻습니다.
+
+```java
+{
+    "SearchedFaceBoundingBox": {
+        "Width": 0.23304933309555054,
+        "Height": 0.4102589786052704,
+        "Left": 0.332182914018631,
+        "Top": 0.45135027170181274
+    },
+    "SearchedFaceConfidence": 99.997314453125,
+    "FaceMatches": [
+        {
+            "Similarity": 99.99998474121094,
+            "Face": {
+                "FaceId": "10139039-5d61-4cae-9bae-b8fe3edc935a",
+                "BoundingBox": {
+                    "Width": 0.27077800035476685,
+                    "Height": 0.4570069909095764,
+                    "Left": 0.3187449872493744,
+                    "Top": 0.3381119966506958
+                },
+                "ImageId": "57e616c6-d392-3cc3-a677-7c52b37d3ea4",
+                "Confidence": 99.9927978515625,
+                "IndexFacesModelVersion": "6.0"
+            }
+        }
+    ],
+    "FaceModelVersion": "6.0"
+}
+```
+
 ## Reference 
 
 [Searching faces in a collection](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)
