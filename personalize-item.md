@@ -1,8 +1,11 @@
 # Personalize의 Item 정보 수집
 
+감정 추천에 사용되는 이미지들은 Stable Diffusion과 같이 머신러닝을 통해 생성할 수도 있고, 다른 방법으로 수집된 이미지를 이용할 수 있습니다. 따라서, 여기에서는 이미지들이 S3에 저장될때 발생하는 put event를 이용하여 Item 정보를 수집합니다. 
+
 ## 아이템(Item) Metadata
 
-### Schema
+이미지에 대한 하나의 아이템에 대한 메타 정보는 ITEM_ID, TIMESTAMP, EMOTION으로 아래와 같이 구성합니다. 
+
 
 ```java
 {
@@ -28,9 +31,7 @@
 }
 ```
 
-## 구현
-
-[lambda-putItem](https://github.com/kyopark2014/emotion-garden/blob/main/lambda-putItem/index.js)에서 사용자 정보를 personalize에 전달합니다.
+[lambda-putItem](./lambda-putItem/index.js)은 아래와 같이 [putItems](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutItems.html)을 이용하여 아이템에 대한 정보를 personalize에 전달합니다.
 
 ```java
 var params = {
@@ -43,8 +44,6 @@ var params = {
         }
     }]
 };
-console.log('user params: ', JSON.stringify(params));
 
-const result = await personalizeevents.putItems(params).promise(); 
-console.log('putItem result: '+JSON.stringify(result));
+await personalizeevents.putItems(params).promise(); 
 ```
