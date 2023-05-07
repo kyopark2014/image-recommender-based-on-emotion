@@ -24,21 +24,25 @@
 
 ## 시스템 구현하기
 
-### 감성(emotion) 확인하기
+### 감성(emotion) 확인
 
 [감정 분석](./face-search.md)에서는 [Rekognition의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용하여 사용자의 감성 및 성별을 확인하는 방법에 대해 설명합니다.
 
-### 사용(userId)자 구분하기
+### 사용자(userId) 확인
 
-[사용자 정보 수집](./personalize-user.md)에서는 Personalize에서 사용되는 사용자의 정보의 Schema와 수집방법에 대해 설명합니다.
+[사용자 분석](./face-correction.md)에서는 [Rekognition의 SearchFacesByImageRequest](https://docs.aws.amazon.com/rekognition/latest/dg/search-face-with-image-procedure.html)를 이용하여 사용자의 아이디를 확인합니다.
+
+### 사용자 정보 수집
+
+[사용자 정보 분석](./personalize-user.md)에서는 Personalize에서 사용되는 사용자의 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
-### 아이템(Item) 정보 수집
+### 아이템 정보 수집
 
 [Item 정보 수집](./personalize-item.md)에서는 Personalize에서 사용되는 아이템 정보의 Schema와 수집방법에 대해 설명합니다.
 
 
-### 상호작용(Interaction) 정보 수집
+### 상호작용 정보 수집
 
 [Interaction 정보 수집](./personalize-interaction.md)에서는 Personalize에서 사용되는 상호작용 정보의 Schema와 수집방법에 대해 설명합니다.
 
