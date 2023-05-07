@@ -65,14 +65,14 @@ await personalizeevents.putEvents(params).promise();
 
 ```java
 const interactionSchema = new personalize.CfnSchema(this, 'InteractionSchema', {
-  name: 'emotion-garden-interaction-schema',
+  name: 'image-recommender-interaction-schema',
   schema: interactionSchemaJson,
 });
 
 const interactionDataset = new personalize.CfnDataset(this, 'InteractionDataset', {
   datasetGroupArn: datasetGroup.attrDatasetGroupArn,
   datasetType: 'Interactions',
-  name: 'emotion-garden-interaction-dataset',
+  name: 'image-recommender-interaction-dataset',
   schemaArn: interactionSchema.attrSchemaArn,
 });
 ```
