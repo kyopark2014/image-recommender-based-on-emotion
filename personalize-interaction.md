@@ -58,3 +58,21 @@ console.log('event params: ', JSON.stringify(params));
 
 await personalizeevents.putEvents(params).promise();
 ```
+
+## 상호작용 데이터셋 정의
+
+[CDK stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서는 아래와 같이 상호작용 스키마로 상호작용 데이터셋을 정의합니다.
+
+```java
+const interactionSchema = new personalize.CfnSchema(this, 'InteractionSchema', {
+  name: 'emotion-garden-interaction-schema',
+  schema: interactionSchemaJson,
+});
+
+const interactionDataset = new personalize.CfnDataset(this, 'InteractionDataset', {
+  datasetGroupArn: datasetGroup.attrDatasetGroupArn,
+  datasetType: 'Interactions',
+  name: 'emotion-garden-interaction-dataset',
+  schemaArn: interactionSchema.attrSchemaArn,
+});
+```
