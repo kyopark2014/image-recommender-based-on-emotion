@@ -40,16 +40,6 @@ Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset
 Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감성(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
 
 
-#### Enabler를 이용한 User, Interaction 데이터 수집
-
-아래 경로로 진입하여 Recommendation을 위한 기본 Dataset을 생성합니다. 
-
-```java
-https://d14j04tdmh4c1d.cloudfront.net/enabler.html
-```
-
-
-
 ## Solution / Campaign 생성
 
 [Dataset groups Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여 "image-recommender-dataset"로 접속하여 왼쪽 메뉴의 [Datasets] - [Data analysis]을 선택한 후에 [Run analysis]을 선택하여 분석합니다. 분석 결과(Insights)에서 User의 숫자가 25이하, interaction이 1000이하로 알림이 발생하면, Personalize에서 입력한 데이터가 분석중이므로 수분 정도 대기한 후에 재시도 합니다.
