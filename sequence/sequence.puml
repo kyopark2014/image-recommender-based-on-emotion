@@ -39,16 +39,16 @@ participant "<color:#green><$Personalize></color>\nPersonalize" as personalize
 
 '/ admin /'
 admin -> s3 ++: copy images manually
-s3 -> admin --
-s3 -> lambdaS3Event ++: object event
+s3 --> admin --
+s3 -> lambdaS3Event ++: put event
 lambdaS3Event -> sqs ++: object info
-sqs -> lambdaS3Event --
-lambdaS3Event -> s3 --
+sqs --> lambdaS3Event --
+lambdaS3Event --> s3 --
 
 sqs -> lambdaPutItem ++: object info
 lambdaPutItem -> personalize ++: putItems
-personalize -> lambdaPutItem --
-lambdaPutItem -> sqs --
+personalize --> lambdaPutItem --
+lambdaPutItem --> sqs --
 
 
 '/ user /'
@@ -60,36 +60,36 @@ s3 --> lambdaEmotion --:
 
 
 lambdaEmotion -> rekognition ++: detectFaces 
-rekognition -> lambdaEmotion --: 200OK (emotion)
+rekognition --> lambdaEmotion --: 200OK (emotion)
 
 lambdaEmotion -> rekognition ++: searchFaces 
-rekognition -> lambdaEmotion --: 200OK (userId)
+rekognition --> lambdaEmotion --: 200OK (userId)
 
 lambdaEmotion -> personalize ++: putUsers
-personalize -> lambdaEmotion --:
+personalize --> lambdaEmotion --:
 lambdaEmotion -> s3 ++: deleteObject
 s3 --> lambdaEmotion --: 
-lambdaEmotion -> api -- : 200OK (userId, emotion)
-api -> cdn: 200OK (userId, emotion)
-cdn -> user: 200OK (userId, emotion)
+lambdaEmotion --> api -- : 200OK (userId, emotion)
+api --> cdn: 200OK (userId, emotion)
+cdn --> user: 200OK (userId, emotion)
 
 
-user -> cdn: POST /gallery (emotion)
-cdn -> api: /gallery (emotion)
-api -> lambdaGallery: /gallery (emotion)
+user -> cdn: POST /gallery 
+cdn -> api: /gallery 
+api -> lambdaGallery ++: /gallery 
 lambdaGallery -> personalize ++: getRecommendations
-personalize -> lambdaGallery --: 200OK (items)
-lambdaGallery -> api: 200OK (Items)
-api -> cdn: 200OK (items)
-cdn -> user: 200OK (items)
+personalize --> lambdaGallery --: 200OK (items)
+lambdaGallery --> api --: 200OK (Items)
+api --> cdn: 200OK (items)
+cdn --> user: 200OK (items)
 
 user -> cdn: POST /like (userId, item)
 cdn -> api: /like (userId, item)
 api -> lambdaLike++ : /like (userId, item)
 lambdaLike -> personalize ++: putEvents
-personalize -> lambdaLike --: 200OK
-lambdaLike -> api --: 200OK
-api -> cdn: 200OK
-cdn -> user: 200OK
+personalize --> lambdaLike --: 200OK
+lambdaLike --> api --: 200OK
+api --> cdn: 200OK
+cdn --> user: 200OK
 
 @enduml
