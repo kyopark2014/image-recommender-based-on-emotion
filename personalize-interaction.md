@@ -39,5 +39,22 @@ Personalize의 상호작용(interaction)에 대한 메타 정보는 USER_ID, ITE
 
 ## 상호작용 정보의 수집
 
-[lambda-createUser](./lambda-createUser/index.js)에서는 DynamoDB에 기존에 이미 등록된 사용자가 있는지 확인하여 없는 경우에 Personalize에 사용자(User)로 등록합니다. 등록할때에는 [putUsers](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutUsers.html)를 사용합니다. 
+[lambda-like](./lambda-like/index.js)에서는 Personalize의 상호작용(interaction) 정보를 등록합니다. 등록할때에는 [putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)를 사용합니다. 
 
+```java
+let params = {            
+    sessionId: itemId,
+    trackingId: trackingId,
+    userId: userId,
+    eventList: [{
+        eventType: "click", 
+        sentAt: timestamp,
+        eventId: uuidv4(),
+        itemId: itemId,
+        impression: impression, 
+    }],
+};
+console.log('event params: ', JSON.stringify(params));
+
+await personalizeevents.putEvents(params).promise();
+```
