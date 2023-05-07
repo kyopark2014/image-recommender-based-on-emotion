@@ -19,21 +19,25 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 ![noname](https://user-images.githubusercontent.com/52392004/235289614-75af2fcd-5c52-491a-a47b-ffe4db8f7158.png)
 
 
+## Personalize DataSet 준비
 
+Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interaction 데이터가 있어야 합니다. 따라서 gallery에서 이미지를 보여주기 위해서는 먼저 최소한의 Traning Dateset을 준비하여야 합니다.
 
+### Enabler 이용한 DataSet 
 
+Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다.
 
-## Personalize 환경 준비
+### 준비된 데이터를 이용
 
-#### Enabler 사용 준비
+Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 여기서 S3 bucket 이름은 "s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc"이므로 아래와 같이 samples에 있는 데이터를 S3로 복사합니다. 
 
-Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interaction 데이터가 있어야 합니다. 따라서 gallery에서 이미지를 보여주기 위해서는 먼저 최소한의 Traning Dateset을 준비하여야 합니다. 이를 위해 여기서는 Enabler를 이용하여 데이터를 수집합니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자읜 선호를 like로 수집합니다.
+aws s3 cp ../samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
 
-Enabler 실행하기 위해서는 아래와 같이 "tools/enabler" 폴더를 CloudFront와 연결된 S3 Bucket의 루트로 복사합니다.
+Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 참조합니다. 여기서는 "https://d3ehoigkpkljvj.cloudfront.net/datasetGenerator.html"로 접속하여 아래와 같이 [Generate]를 선택합니다.
 
-```java
-aws s3 cp ../tools/enabler/ s3://emotion-gallery/ --recursive 
-```
+![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
+
+Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감성(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction dataset을 생성합니다.
 
 
 #### Enabler를 이용한 User, Interaction 데이터 수집
