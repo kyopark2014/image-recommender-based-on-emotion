@@ -14,6 +14,7 @@ import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as lambdaEventSources from 'aws-cdk-lib/aws-lambda-event-sources';
 import * as personalize from 'aws-cdk-lib/aws-personalize';
+import { aws_rekognition as rekognition } from 'aws-cdk-lib';
 
 const debug = false;
 const stage = "dev";
@@ -67,6 +68,15 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       },
       priceClass: cloudFront.PriceClass.PRICE_CLASS_200,
     });
+
+    const collectionId = 'image-recommender-collectionId';
+    const cfnCollection = new rekognition.CfnCollection(this, 'MyCfnCollection', {
+      collectionId: collectionId,
+    });
+    new cdk.CfnOutput(this, 'Collection-attrArn', {
+      value: cfnCollection.attrArn,
+      description: 'The arn of correction in Rekognition',
+    }); 
 
     // API Gateway
     const role = new iam.Role(this, "api-role-image-recommender", {
@@ -437,6 +447,7 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       logRetention: logs.RetentionDays.ONE_DAY,
       environment: {
         bucketName: s3Bucket.bucketName,
+        collectionId: collectionId
       }
     });
     s3Bucket.grantReadWrite(lambdaEmotion);

@@ -2,6 +2,7 @@ const aws = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 const s3 = new aws.S3();
 const bucketName = process.env.bucketName;
+const collectionId = process.env.collectionId;
 
 exports.handler = async (event, context) => {
     // console.log('## ENVIRONMENT VARIABLES: ' + JSON.stringify(process.env));
@@ -122,6 +123,26 @@ exports.handler = async (event, context) => {
                 generation: generation
             };
             console.info('emotionInfo: ' + JSON.stringify(emotionInfo));
+
+            try {
+                // collectionId
+                const searchFacesByImageParams = {
+                    CollectionId: collectionId,
+                    FaceMatchThreshold: 80, //default
+                    Image: {
+                        S3Object: {
+                            Bucket: bucketName,
+                            Name: fileName
+                        },
+                    },
+                };
+                // console.log('rekognitionParams = '+JSON.stringify(searchFacesByImageParams))
+                const data = await rekognition.searchFacesByImage(searchFacesByImageParams).promise();
+                console.log('data: '+JSON.stringify(data));
+
+            } catch (err) {
+                console.log(err);
+            }
 
             response = {
                 statusCode: 200,
