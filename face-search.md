@@ -1,6 +1,6 @@
 # 얼굴 분석 확인하기 
 
-## Facial analysis
+## Rekognition의 Facial analysis
 
 Rekognition의 [Facial analysis](https://docs.aws.amazon.com/rekognition/latest/dg/faces.html)을 이용하면, [Facial analysis 예제](./sample-facial-analysis.json)와 같이 성별(Gender), 나이대(AgeRange), 감성(Emotion)등에 대한 정보를 얻을 수 있습니다. 특히 감정(Emotion)은 HAPPY, SURPRISED, CALM, ANGRY, FEAR, CONFUSED, DISGUSTED, SAD와 같이 8가지 형태의 결과를 얻습니다.
 
