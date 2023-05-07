@@ -50,69 +50,6 @@ https://d14j04tdmh4c1d.cloudfront.net/enabler.html
 
 
 
-
-
-
-### S3의 퍼미션 추가
-
-[S3 console](https://s3.console.aws.amazon.com/s3/buckets?region=ap-northeast-1&region=ap-northeast-1)로 진입한 후에, 데모에 사용되는 bucket인 "emotion-gallery"을 선택합니다. 
-
-이후 [Permission]메뉴에서 [Bucket policy]를 선택후 아래와 같이 수정합니다. 현재 해당 Bucket은 CloudFront의 Origin의 역할을 하고 있어서, Principle에 CloudFront가 추가되어 있지만, CloudFront를 사용하지 않을 경우에는 S3에 대한 Priciple, Action, Resouces를 추가하면 됩니다.
-
-
-```java
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "personalize.amazonaws.com",
-                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2X1ZWYFLCLC5X"
-            },
-            "Action": [
-                "s3:GetObject",
-                "s3:ListBucket"
-            ],
-            "Resource": [
-                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc",
-                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
-            ]
-        }
-    ]
-}
-
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::677146750822:role/CdkImageRecommenderStack-CustomS3AutoDeleteObjects-1WZ9EELHGNK00",
-                "Service": "personalize.amazonaws.com"
-            },
-            "Action": [
-                "s3:DeleteObject*",
-                "s3:GetBucket*",
-                "s3:List*"
-            ],
-            "Resource": [
-                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc",
-                "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2X1ZWYFLCLC5X"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/*"
-        }
-    ]
-}
-```
-
 ## Solution / Campaign 생성
 
 [Dataset groups Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여 "image-recommender-dataset"로 접속하여 왼쪽 메뉴의 [Datasets] - [Data analysis]을 선택한 후에 [Run analysis]을 선택하여 분석합니다. 분석 결과(Insights)에서 User의 숫자가 25이하, interaction이 1000이하로 알림이 발생하면, Personalize에서 입력한 데이터가 분석중이므로 수분 정도 대기한 후에 재시도 합니다.
