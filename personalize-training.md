@@ -20,10 +20,6 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 
 
-#### IAM Role 생성
-
-![noname](https://user-images.githubusercontent.com/52392004/235329185-830968fc-a610-4a5d-9f81-135484e866bd.png)
-
 
 
 
