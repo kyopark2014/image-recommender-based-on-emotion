@@ -81,6 +81,19 @@
 
 ![noname](https://user-images.githubusercontent.com/52392004/236821778-076f6d9c-d338-442e-9ce5-b8c34b79b6ec.png)
 
+### 리소스 정리하기
+
+더이상 인프라를 사용하지 않는 경우에 아래처럼 모든 리소스를 삭제할 수 있습니다.
+
+```java
+cdk destroy
+```
+
+본 실습에서는 GPU를 사용하는 SageMaker Endpoint를 사용하므로 실습이 끝나고 반드시 삭제하여야 합니다. [SageMaker Models](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/models), [SageMaker Endpoints](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpoints), [SageMaker Endpoint configuration](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpointConfig)에서 생성했던model, endpoint, endpoint configuration을 모두 삭제합니다.
+
+[Cloud9 console](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/)에서 배포에 사용되었던 Cloud9을 삭제합니다.
+
+
 ## 결론
 
 AWS의 완전 관리형 AI 서비스인 Amazon Rekognition을 이용하여 카메라로 부터 얻어진 얼굴 이미지로부터 감정을 분석하고 얼굴 아이디를 생성하였습니다. 또한, Amazon Personalize를 이용하여 상호작용(interaction) 데이터가 없는 경우에는 "감정 추천"을 적용하고, 데이터가 쌓이면 "개인화 추천"을 제공하는 방법을 제안하였습니다. 감정을 표현하기 위해 생성한 이미지들은 SageMaker JumpStart의 생성 AI 모델인 Stable Diffusion을 이용하였으며, 비용 효율적으로 다수의 이미지를 빠르게 생성할 수 있는 Event Driven 아키텍처를 구현하였습니다. 감정을 활용한 개인화 추천은 개별 상황에 최적화된 추천을 수행할 수 있어서 다양한 용도로 활용될 수 있을 것으로 기대됩니다.
