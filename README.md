@@ -18,7 +18,10 @@
 4) 사용자 아이디(userId)를 이용하여 [Personalize의 getRecommendations](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_RS_GetRecommendations.html)을 이용하여 "감성 추천" 및 "개인화 추천"을 이용합니다. 
 5) 사용자가 감성 이미지를 선택하는 경우에 상호작용(interaction)을 [Personalize의 putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)을 이용하여 저장하여, 상호작용 데이터셋을 생성합니다. 
 
-![sequence](https://user-images.githubusercontent.com/52392004/236651082-31086a0a-cf6f-4751-b44f-79a70430f95c.png)
+![sequence](https://user-images.githubusercontent.com/52392004/236805345-c56801a4-dc53-457d-b1f7-200db0edb02d.png)
+
+
+
 
 
 ## 시스템 구현하기
