@@ -9,7 +9,7 @@
 ![image](https://user-images.githubusercontent.com/52392004/236751976-5a31399b-7a49-4c10-a0ed-e7e80e042252.png)
 
 
-전체적인 signal flow는 아래를 참조합니다.
+전체적인 시그널 흐름도(signal flow)는 아래를 참조합니다.
 
 1) 시스템 관리자(administrator)는 감성에 맞게 Stable Diffusion을 이용해 생성하거나, 감성을 잘 표현하는 이미지를 적절히 분류하여 Amazon S3의 버켓(Bucket)에 복사합니다.
 2) 복사된 이미지의 [put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)가 실행되면서 personalize에 putItem으로 아이템 데이터셋을 생성합니다.
