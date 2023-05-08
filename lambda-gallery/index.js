@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     const body = JSON.parse(Buffer.from(event["body"], "base64"));
     //console.log('gardenRequestInfo: ' + JSON.stringify(body));
 
-    let userId = body['id'];
+    let userId = body['userId'];
     console.log('userId: ', userId);
 
     let emotion = body['emotion'];

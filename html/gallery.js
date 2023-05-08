@@ -159,7 +159,7 @@ function getEmotion(type) {
             else {  // userbase
                 drawGallery(emotionValue, gender, `${userId}/${emotionValue}`);                
             }   
-            
+
             // create/update user
             createUser(`${userId}/${emotionValue}`, gender, emotionValue);         
         }
@@ -258,7 +258,7 @@ function drawGallery(emotionValue, gender, id) {
     };
 
     let requestObj = {
-        "id": id,
+        "userId": id,
         "emotion": emotionValue,
         "gender": gender,
     };
