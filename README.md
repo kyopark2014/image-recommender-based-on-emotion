@@ -16,7 +16,7 @@
 2) 이미지가 S3 Bucket에 복사되면서 발생한 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda (s3-event)](https://aws.amazon.com/ko/lambda/)를 통해 FIFO 형태의 SQS에 저장합니다. 이후 Lambda(putItem)를 이용하여 순차적으로 꺼내서 [personalize에 putItem](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_UBS_PutItems.html)으로 전달하여 아이템 데이터셋을 생성합니다.
 3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감정(emotion)을 분석합니다. 
 4) [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 기존에 등록된 얼굴 정보가 없는 경우에는 [rekognition의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 신규로 등록합니다. 
-5) 사용자는 Rekognition으로 부터 전달받은 userId, emotion이 처음으로 생성되었는지를 DynamoDB 조회를 통해 확인하며, 신규인 경우에는 [Personalize에 putUsers](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_UBS_PutUsers.html)를 이용하여 Personzlize의 사용자 데이터셋에 업데이트합니다.
+5) 사용자는 Rekognition으로 부터 전달받은 userId, emotion이 처음으로 생성되었는지를 DynamoDB 조회를 통해 확인하며, 신규인 경우에는 [Personalize의 putUsers](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_UBS_PutUsers.html)를 이용하여 Personzlize의 사용자 데이터셋에 업데이트합니다.
 6) 사용자는 [Personalize의 getRecommendations](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_RS_GetRecommendations.html)을 이용하여 "감정 추천" 및 "개인화 추천"을 이용합니다. 
 9) 사용자가 감정 이미지를 선택하는 경우에 상호작용(interaction)을 [Personalize의 putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)을 이용하여 저장하여, 상호작용 데이터셋을 생성합니다. 
 
