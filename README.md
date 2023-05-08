@@ -12,7 +12,7 @@
 
 전체적인 신호 흐름도(signal flow)는 아래를 참조합니다.
 
-1) 시스템 관리자(administrator)는 감성(emotion)에 맞게 생성된 이미지를 /imgPool에서 /emotion으로 이동합니다. 이때 생성된 이미지는 Stable Diffusion 모델을 생성된 가상의 이미지입니다. 이때 이미 감성을 잘 표현하는 이미지가 있다면, Amazon S3의 버켓(Bucket)에 동일한 방식으로 복사합니다.
+1) 감성(emotion)이미지는 미리 SageMaker JumpStart의 Stable Diffusion 모델로 S3의 이미지풀에 저장되어 있다고 가정합니다. 시스템 관리자(administrator)는 감성(emotion)에 맞게 생성된 이미지를 /imgPool에서 /emotion으로 이동합니다. 이때 생성된 이미지는 Stable Diffusion 모델을 생성된 가상의 이미지입니다. 이때 이미 감성을 잘 표현하는 이미지가 있다면, Amazon S3의 버켓(Bucket)에 동일한 방식으로 복사합니다.
 2) 복사된 이미지의 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)가 실행되면서 personalize에 putItem으로 아이템 데이터셋을 생성합니다.
 3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감성(emotion)을 분석합니다. 이후 [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 만약 얼굴 분석 결과를 저장하는 [Personalize의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 등록되지 않은 얼굴(Face) 이미지가 있을 경우에는 새로운 사용자 아이디(userId)로 생성합니다.
 4) 사용자 아이디(userId)를 이용하여 [Personalize의 getRecommendations](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_RS_GetRecommendations.html)을 이용하여 "감성 추천" 및 "개인화 추천"을 이용합니다. 
