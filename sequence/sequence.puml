@@ -31,6 +31,8 @@ participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(emotion)" as lamb
 participant "<color:#green><$SimpleStorageServiceS3></color>\nAmazon S3" as s3
 participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(s3-event)" as lambdaS3Event
 participant "<color:#green><$Rekognition></color>\nAmazon\nRekognition" as rekognition
+participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(createUser)" as lambdaCreateUser
+participant "<color:#blue><$DynamoDB></color>\nDynamoDB" as dynamodb
 participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(gallery)" as lambdaGallery
 participant "<color:#D86613><$Lambda></color>\nAmazon Lambda\n(like)" as lambdaLike
 participant "<color:#magenta><$SQS></color>\nAmazon SQS\nFIFO" as sqs
@@ -65,14 +67,29 @@ rekognition --> lambdaEmotion --: 200OK (emotion)
 lambdaEmotion -> rekognition ++: searchFaces 
 rekognition --> lambdaEmotion --: 200OK (userId)
 
-lambdaEmotion -> personalize ++: putUsers
-personalize --> lambdaEmotion --:
 lambdaEmotion -> s3 ++: deleteObject
 s3 --> lambdaEmotion --: 
 lambdaEmotion --> api -- : 200OK (userId, emotion)
 api --> cdn: 200OK (userId, emotion)
 cdn --> user: 200OK (userId, emotion)
 
+
+user -> cdn: POST /createUser 
+cdn -> api: /createUser 
+
+api -> lambdaCreateUser ++ : /createUser
+lambdaCreateUser -> dynamodb ++: query userId/emotion
+dynamodb ---> lambdaCreateUser --: 
+
+lambdaCreateUser -> personalize ++: putUsers
+personalize --> lambdaCreateUser --:
+
+lambdaCreateUser -> dynamodb ++: put userId/emotion
+dynamodb ---> lambdaCreateUser --: 
+
+lambdaCreateUser --> api --: 200OK
+api --> cdn: 200OK 
+cdn --> user: 200OK 
 
 user -> cdn: POST /gallery 
 cdn -> api: /gallery 
