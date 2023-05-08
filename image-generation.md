@@ -12,7 +12,7 @@ Output의 "ImageGenerator"에 있는 URL로 접속합니다. 아래와 같이 "R
 
 생성된 이미지가 적절하지 않다고 판단되면, 오른쪽의 "dislike"를 선택한 후에 [Remove]로 삭제합니다. 
 
-Image Generator로 생성된 이미지들은 Preview에서 확인하고, 필요시 삭제할 수 있습니다. Preview의 url은 Output의 "Preview"을 참조합니다. 여기서 Preview의 url은 "https://d2nnqu1h4mrgxo.cloudfront.net/preview.html" 입니다. 
+Image Generator로 생성된 이미지들은 Preview에서 확인하고, 필요시 삭제할 수 있습니다. Preview의 url은 Output의 "Preview"에 있는 URL을 이용합니다. 
 
 동일한 작업을 "놀람(SURPRISED)"등 나머지 7개 감정에 대해 수행합니다.
 
