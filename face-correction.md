@@ -2,7 +2,7 @@
 
 ## Correction의 정의
 
-[Face correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)을 이용하여 이미지에 있는 사용자를 인지하고자 합니다. [CDK Stack](./cdk-image-recommender-stack.ts)에서는 이미지에서 추출된 얼굴에 대한 correction을 생성합니다.
+[Face correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)을 이용하여 이미지에 있는 사용자를 인지하고자 합니다. [CDK Stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서는 이미지에서 추출된 얼굴에 대한 correction을 생성합니다.
 
 ```java
 const collectionId = 'image-recommender-collectionId';
