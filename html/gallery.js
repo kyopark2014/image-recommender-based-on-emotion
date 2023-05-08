@@ -214,7 +214,7 @@ function createUser(id, gender, emotion) {
         "gender": gender,
         "emotion": emotion,
     };
-    console.log("request: " + JSON.stringify(requestObj));
+    console.log("request(createUser): " + JSON.stringify(requestObj));
 
     let blob = new Blob([JSON.stringify(requestObj)], { type: 'application/json' });
 
@@ -262,7 +262,7 @@ function drawGallery(emotionValue, gender, id) {
         "emotion": emotionValue,
         "gender": gender,
     };
-    console.log("request: " + JSON.stringify(requestObj));
+    console.log("request(drawGallery): " + JSON.stringify(requestObj));
 
     let blob = new Blob([JSON.stringify(requestObj)], { type: 'application/json' });
 
@@ -285,7 +285,7 @@ function sendLike(id, itemId, impression) {
         "itemId": itemId,
         "impression": impression,
     };
-    console.log("request: " + JSON.stringify(requestObj));
+    console.log("request(sendLike): " + JSON.stringify(requestObj));
 
     let blob = new Blob([JSON.stringify(requestObj)], { type: 'application/json' });
 

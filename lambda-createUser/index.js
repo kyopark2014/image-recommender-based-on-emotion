@@ -89,10 +89,10 @@ exports.handler = async (event, context) => {
                         console.log('dynamodb put result: ' + JSON.stringify(data));
 
                         isCompleted = true;
+                        console.log('created: ', userId);
 
                         response = {
                             statusCode: 200,
-                            msg: "created",
                             body: JSON.stringify({
                                 userId: userId,
                                 gender: gender,
@@ -111,9 +111,11 @@ exports.handler = async (event, context) => {
             }
         }
         else {
+            isCompleted = true;
+            console.log('existed: ', userId);
+            
             response = {
                 statusCode: 200,
-                msg: "existed",
                 body: JSON.stringify({
                     userId: userId,
                     gender: gender,
