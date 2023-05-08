@@ -6,7 +6,7 @@
 
 전체적인 Archtiecture는 시스템관리자(administrator)와 사용자(user)가 사용하는 인프라로 구분됩니다. 상단은 사용자가 감정을 표현하는 이미지를 Servirng하는 인프라이며 하단은 관리자가 감정을 표현하는 이미지를 생성하는 인프라입니다. 
 
-![image](https://user-images.githubusercontent.com/52392004/233784271-75654db5-b939-4de4-a369-a0998f859156.png)
+![image](https://user-images.githubusercontent.com/52392004/236751976-5a31399b-7a49-4c10-a0ed-e7e80e042252.png)
 
 
 전체적인 signal flow는 아래를 참조합니다.
