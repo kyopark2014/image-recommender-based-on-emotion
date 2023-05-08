@@ -76,3 +76,7 @@
 [Personalize 학습](https://github.com/kyopark2014/image-recommender-based-on-emotion/blob/main/personalize-training.md)에서는 추천을 위해 Personlize 환경을 준비하는 과정을 설명합니다.
 
 ### 실행하기
+
+Output의 "Gallery"의 URL로 접속하면 아래와 같은 이미지 추천을 
+Output의 "Gallery"의 URL로 접속하면 아래와 같은 실행화면을 볼 수 있습니다.이용
+Output의 "Gallery"의 URL로 접속하면 아래와 같은 실행화면을 볼 수 있습니다.
