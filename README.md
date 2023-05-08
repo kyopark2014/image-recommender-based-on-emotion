@@ -13,7 +13,7 @@
 전체적인 신호 흐름도(signal flow)는 아래를 참조합니다.
 
 1) 시스템 관리자(administrator)는 감성(emotion)에 맞게 생성된 이미지를 S3 bucket의 /emotion폴더로 복사합니다. 
-2) 이미지가 S3 Bucket에 복사되면서 발생한 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)를 통해 FIFO 형태의 SQS에 저장합니다. 이후 Lambda를 이용하여 순차적으로 꺼내서 personalize에 putItem으로 전달하여 아이템 데이터셋을 생성합니다.
+2) 이미지가 S3 Bucket에 복사되면서 발생한 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda (s3-event)](https://aws.amazon.com/ko/lambda/)를 통해 FIFO 형태의 SQS에 저장합니다. 이후 Lambda(putItem)를 이용하여 순차적으로 꺼내서 [personalize에 putItem](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_UBS_PutItems.html)으로 전달하여 아이템 데이터셋을 생성합니다.
 3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감성(emotion)을 분석합니다. 
 4) [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 기존에 등록된 얼굴 정보가 없는 경우에는 [rekognition의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 신규로 등록합니다. 
 5) 사용자는 Rekognition으로 부터 전달받은 userId, emotion이 처음으로 생성되었는지를 DynamoDB를 조회를 통해 확인하여, 신규인 경우에는 Personalize에 putUsers를 이용하여 전달하여 사용자 데이터셋을 업데이트합니다.
