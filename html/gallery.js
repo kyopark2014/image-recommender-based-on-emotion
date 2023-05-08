@@ -31,7 +31,7 @@ let drawingIndex = 0;
 let like = [];
 for(let i=0;i<3;i++) like[i] = false;
 let impression = [];
-let userId;
+let userId, emotionValue;
 
 //functions
 function videoStart() {
@@ -102,7 +102,7 @@ function getEmotion(type) {
             let mouthOpen = response.mouthOpen;
             console.log("mouthOpen: " + mouthOpen);
 
-            let emotionValue = response.emotions.toLowerCase();
+            emotionValue = response.emotions.toLowerCase();
             console.log("emotion: " + emotionValue);
 
             let emotionText = "Emotion: ";
@@ -157,11 +157,11 @@ function getEmotion(type) {
                 drawGallery(emotionValue, gender, `${gender}/${emotionValue}`);
             }
             else {  // userbase
-                drawGallery(emotionValue, gender, `${userId}/${emotionValue}`);
-
-                // create/update user
-                createUser(`${userId}/${emotionValue}`, gender, emotionValue);
-            }            
+                drawGallery(emotionValue, gender, `${userId}/${emotionValue}`);                
+            }   
+            
+            // create/update user
+            createUser(`${userId}/${emotionValue}`, gender, emotionValue);         
         }
         else {
             profileInfo_emotion.innerHTML = `<h3>No Face</h3>`
@@ -269,7 +269,7 @@ function drawGallery(emotionValue, gender, id) {
     xhr.send(blob);
 }
 
-function sendLike(userId, itemId, impression) {
+function sendLike(id, itemId, impression) {
     const url = "like";
     const xhr = new XMLHttpRequest();
 
@@ -281,7 +281,7 @@ function sendLike(userId, itemId, impression) {
     };
 
     let requestObj = {
-        "id": userId,
+        "id": id,
         "itemId": itemId,
         "impression": impression,
     };
@@ -385,7 +385,7 @@ function likeOrDislike(col, x) {
             fname = previewUrl[drawingIndex+col].url.substring(pos)
             console.log("fname: ", fname);
 
-            sendLike(userId, fname, impression);
+            sendLike(`${userId}/${emotionValue}`, fname, impression);
         }
         x.classList.value = "fa a-thumbs-up"
     }
