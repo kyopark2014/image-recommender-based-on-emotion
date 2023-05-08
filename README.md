@@ -4,22 +4,21 @@
 
 개인화 추천의 경우에 사용자의 이전 상호작용(interaction)을 이용하여 추천을 수행하게 되는데, 이전 히스토리가 없는 경우에는 감정(emotion)에 맞는 적절한 추천을 할 수 없습니다. 따라서 본 게시글에서는 이전 히스토리가 없는 경우에는 감성 정보를 바탕으로 미리 학습한 데이터를 이용하여 "감성 추천"을 수행하고, 일정 데이터가 확보되었을때에 "개인화 추천"을 수행하는 방법을 설명합니다. 아래는 사용자의 감정에 따라 이미지를 추천하는 시스템 아키텍처를 소개합니다. 
 
-![image](https://user-images.githubusercontent.com/52392004/236748046-7fa6aca5-f2e3-4be6-935e-78dc8358a545.png)
+전체적인 Archtiecture는 시스템관리자(administrator)와 사용자(user)가 사용하는 인프라로 구분됩니다. 상단은 사용자가 감정을 표현하는 이미지를 Servirng하는 인프라이며 하단은 관리자가 감정을 표현하는 이미지를 생성하는 인프라입니다. 
+
+![image](https://user-images.githubusercontent.com/52392004/233784271-75654db5-b939-4de4-a369-a0998f859156.png)
 
 
-주요 단계는 아래와 같습니다.
+전체적인 signal flow는 아래를 참조합니다.
 
 1) 시스템 관리자(administrator)는 감성에 맞게 Stable Diffusion을 이용해 생성하거나, 감성을 잘 표현하는 이미지를 적절히 분류하여 Amazon S3의 버켓(Bucket)에 복사합니다.
-2) 복사된 이미지의 [put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda]가 실행되면서 personalize에 putItem으로 아이템 데이터셋을 생성합니다.
-3) 사용자가 카메라 앞에 있을때에 얼굴로 감성(emotion)을 분석합니다. 해당 이미지가 기존에 등록된 이미지인지 확인하여 등록된 이미지라면 이전 등록된 얼굴(Face) 아이디를 확인합니다.
-4) ㄹㅇㄹ
-4) Amazon Personalize에서 사용할 수 있도록 user, item, interaction 데이터셋을 생성합니다.
-5) 생성된 데이터로 Solution, Campaign을 생성합니다.
-6) 클라이언트를 이용하여 감성기반의 이미지 추천을 활용합니다.
-
-전체적인 flow는 아래를 참조합니다.
+2) 복사된 이미지의 [put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)가 실행되면서 personalize에 putItem으로 아이템 데이터셋을 생성합니다.
+3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감성(emotion)을 분석합니다. 이후 [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 만약 [Personalize의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 등록되지 않은 얼굴(Face) 이미지의 경우에는 새로운 사용자 아이디(userId)로 생성합니다.
+4) 사용자 아이디(userId)를 이용하여 [Personalize의 getRecommendations]을 이용하여 "감성 추천" 및 "개인화 추천"을 이용합니다. 
+5) 사용자가 감성 이미지를 선택하는 경우에 상호작용(interaction)을 [Personalize의 putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)을 이용하여 상호작용 데이터셋을 생성합니다. 
 
 ![sequence](https://user-images.githubusercontent.com/52392004/236651082-31086a0a-cf6f-4751-b44f-79a70430f95c.png)
+
 
 ## 시스템 구현하기
 
