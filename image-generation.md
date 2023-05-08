@@ -4,7 +4,7 @@
 
 ### 이미지 생성
 
-웹브라우저에서 Output의 ImageGenerator로 접속합니다. 여기서는 "https://d2nnqu1h4mrgxo.cloudfront.net/imgGenerator.html"로 접속합니다. 아래와 같이 "RepeatCount"을 30으로 설정하고, "Emotion"으로 "행복(HAPPY)"을 선택한 후에 [Generate] 버튼을 선택합니다. 이미지 생성 상태는 [Updata] 버튼을 통해 확인할 수 있습니다. 
+Output의 "ImageGenerator"에 있는 URL로 접속합니다. 아래와 같이 "RepeatCount"을 30으로 설정하고, "Emotion"으로 "행복(HAPPY)"을 선택한 후에 [Generate] 버튼을 선택합니다. 이미지 생성 상태는 [Updata] 버튼을 통해 확인할 수 있습니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/235281180-709590e1-806d-4da9-b643-bd617b97bec3.png)
 
