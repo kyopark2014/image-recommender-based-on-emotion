@@ -4,7 +4,7 @@
 
 ## 아이템(Item) Metadata
 
-이미지에 대한 하나의 아이템에 대한 메타 정보는 ITEM_ID, TIMESTAMP, EMOTION으로 아래와 같이 구성합니다. 
+이미지에 대한 하나의 아이템에 대한 메타 정보는 ITEM_ID, TIMESTAMP, EMOTION로 아래와 같이 구성합니다. 
 
 ```java
 {
@@ -32,7 +32,7 @@
 
 ## 아이템 정보의 수집
 
-하나의 이미지가 S3 bucket에 저장될때 "emotions/happy/img_20230423-101932_1h.jpeg"와 같이 저장되면 오브젝트의 경로를 이용하여 이미지가 분류되었던 감정(emotion)을 추출할 수 있습니다. S3의 "emotions" 폴더에 대한 이벤트 정보의 수집할 수 있도록 [CDK Stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서 "event source"로 아래와 같이 설정합니다.
+하나의 이미지가 S3 bucket에 저장될 때 "emotions/happy/img_20230423-101932_1h.jpeg"와 같이 저장되면 오브젝트의 경로를 이용하여 이미지가 분류되었던 감정(emotion)을 추출할 수 있습니다. S3의 "emotions" 폴더에 대한 이벤트 정보의 수집할 수 있도록 [CDK Stack](./cdk-image-recommender/lib/cdk-image-recommender-stack.ts)에서 "event source"로 아래와 같이 설정합니다.
 
 ```java
 const s3PutEventSource = new lambdaEventSources.S3EventSource(s3Bucket, {
