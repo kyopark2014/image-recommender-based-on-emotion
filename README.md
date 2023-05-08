@@ -1,4 +1,4 @@
-# Amazon Rekognition과 Personalize를 이용한 감성 이미지 추천
+# Amazon Rekognition과 Personalize를 이용한 감성 이미지 추천하기
 
 카메라로 사람의 표정을 분석하여 현재의 감성(Emotion)을 얻을 수 있다면, 추천 시스템에 유용하게 활용할 수 있습니다. 여기서는 [Amazon Rekognition](https://aws.amazon.com/ko/rekognition/)을 이용하여 사용자의 감성을 얻고, 사용자의 감성을 잘 표현하는 이미지를 [Amazon Personlize](https://aws.amazon.com/ko/personalize/)를 이용하여 추천합니다. 이를 통해 Amazon의 완전관리형 서비스인 Rekognition과 Personalize를 효과적으로 사용하는 방법을 이해할 수 있습니다. 또한 감성을 표현하는 이미지는 [Amazon SageMaker JumpStart](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html)의 [Stable Diffusion 모델](https://aws.amazon.com/ko/blogs/tech/ai-art-stable-diffusion-sagemaker-jumpstart/)을 이용해 생성합니다. Stable Diffision 모델은 텍스트로 이미지를 생성하는 기초 모델 (Foundation Model)으로서, SageMaker JumpStart를 이용하면 이미지를 생성하는 Endpoint를 쉽게 생성할 수 있습니다. 
 
