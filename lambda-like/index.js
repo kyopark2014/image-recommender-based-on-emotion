@@ -89,7 +89,7 @@ exports.handler = async (event, context) => {
         console.log('impressionStr: ' + impressionStr);
         
         // DynamodB for personalize interactions
-        let personalzeParams = {
+        let dynamoParams = {
             TableName: interactionTableName,
             Item: {
                 USER_ID: userId,
@@ -99,18 +99,19 @@ exports.handler = async (event, context) => {
                 IMPRESSION: impressionStr,
             }
         };
-        console.log('personalzeParams: ' + JSON.stringify(personalzeParams));
+        console.log('dynamoParams: ' + JSON.stringify(dynamoParams));
 
-        dynamo.put(personalzeParams, function (err, data) {
+        dynamo.put(dynamoParams, function (err, data) {
             if (err) {
                 console.log('Failure: ' + err);
             }
             else {
                 console.log('dynamodb put result: ' + JSON.stringify(data));
+
+                isCompleted = true;
             }
         });        
-        isCompleted = true;
-
+        
         response = {
             statusCode: 200,
             body: "Success"
