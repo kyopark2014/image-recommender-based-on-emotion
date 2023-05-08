@@ -21,12 +21,12 @@ Image Generator로 생성된 이미지들은 Preview에서 확인하고, 필요�
 imgPool에 있는 이미지를 Cloud9으로 다운로드 합니다.
 
 ```java
-cd ~/ && aws s3 cp s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/imgPool/ ./imgPool/ --recursive
+cd ~/ && aws s3 cp s3://[Bucket]/imgPool/ ./imgPool/ --recursive
 ```
 "emotions" 폴더로 생성한 이미지들을 복사합니다. 
 
 ```java
-aws s3 cp ./imgPool/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
+aws s3 cp ./imgPool/ s3://[Bucket]/emotions/ --recursive
 ```
 
 ## Sample 이미지를 이용하기
@@ -34,5 +34,5 @@ aws s3 cp ./imgPool/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32
 원활한 실습을 위해 Sample 이미지를 활용할 수 있습니다.
 ```java
 unzip ../samples.zip
-aws s3 cp ../samples/emotions/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/emotions/ --recursive
+aws s3 cp ../samples/emotions/ s3://[Bucket]/emotions/ --recursive
 ```
