@@ -3,10 +3,11 @@
 ## Event Tracker 설정 
 
 Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Event Tracker를 생성하여야 합니다. [Data Group Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 진입하여, 아래와 같이 "image-recommender-dataset"을 선택합니다. 이후 [Create event tracker]를 선택합니다. 
+![image](https://user-images.githubusercontent.com/52392004/236887595-2f4f3ab7-2e68-4fec-94d1-309cc9708d36.png)
 
 ![noname](https://user-images.githubusercontent.com/52392004/235288753-56861bb5-33f8-42d6-8f2b-9db63ea2ebc1.png)
 
-[Configure tracker]에서 아래와 같이 [Tracker name]으로 "image-recommender-event-tracker"라고 입력후 [Next]를 선택하고, [Finish]를 선택합니다.
+[Configure tracker]에서 아래와 같이 [Tracker name]로 "image-recommender-event-tracker"로 입력 후에 [Next]를 선택하고, [Finish]를 선택합니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/235288895-e64a2799-6070-4d5b-9929-33e31f384a13.png)
 
@@ -25,19 +26,19 @@ Personalize는 최소 25명 이상의 user와 최소 1000개 이상의 interacti
 
 ### Enabler 이용한 DataSet 
 
-Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자의 선호를 like API를 이용해 수집합니다. Enabler의 접속은 Output의 주소 "Enabler"를 이용합니다. Enabler를 이용하여 25명에 대한 1000개의 interaction 데이터셋을 수집하는것은 많은 시간이 소요되므로 아래와 같이 준비된 데이터셋을 사용합니다.
+Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 DynamoDB에서 item 정보를 가져와서 감정에 따라 보여주고, 사용자의 선호를 like API를 이용해 수집합니다. Enabler의 접속은 Output의 주소 "Enabler"를 이용합니다. Enabler를 이용하여 25명에 대한 1000개의 interaction 데이터셋을 수집하는 것은 많은 시간이 소요되므로 아래와 같이 준비된 데이터셋을 사용합니다.
 
-### 준비된 데이터셋를 이용
+### 준비된 데이터셋을 이용
 
-Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 여기서 S3 bucket 이름은 "s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc"이므로 아래와 같이 samples에 있는 데이터를 S3로 복사합니다. 
+Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 
 
-aws s3 cp ../samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
+aws s3 cp ../samples/ s3://[Bucket Name]/ --recursive
 
 Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 이용하여 아래와 같이 접속 후에 [Generate]를 선택합니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
 
-Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감정(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
+Dataset Generator는 [datasetGenerator.js](./html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감정(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
 
 
 ## Solution / Campaign 생성
