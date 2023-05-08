@@ -16,9 +16,10 @@ let canvas = document.getElementById('canvas');
 canvas.width = previewPlayer.width;
 canvas.height = previewPlayer.height;
 
-let profileInfo_emotion, profileInfo_age, profileInfo_features;
-profileInfo_emotion = document.getElementById('profile-emotion');
-profileInfo_age = document.getElementById('profile-age');
+let profileInfo_emotion = document.getElementById('profile-emotion');
+// let profileInfo_age = document.getElementById('profile-age');
+let profileInfo_features = document.getElementById('profileInfo_features');
+let profileInfo_userId = document.getElementById('profile-userId');
 promptText = document.getElementById('promptText');
 
 let previewUrl = [];
@@ -30,6 +31,7 @@ let drawingIndex = 0;
 let like = [];
 for(let i=0;i<3;i++) like[i] = false;
 let impression = [];
+let userId;
 
 //functions
 function videoStart() {
@@ -65,7 +67,7 @@ function getEmotion(type) {
             let response = JSON.parse(xhr.responseText);
             console.log("response: " + JSON.stringify(response));
 
-            let userId = response.id;
+            userId = response.id;
             console.log("userId: " + userId);
 
             let gender = response.gender;
@@ -126,11 +128,12 @@ function getEmotion(type) {
             let genderText;
             if (gender == 'Male') genderText = '남자'
             else genderText = '여자'
-            let profileText = ageRange + ' (' + genderText + ')';
-            console.log("profileText: " + profileText);
+            // let profileText = ageRange + ' (' + genderText + ')';
+            // console.log("profileText: " + profileText);
 
             profileInfo_emotion.innerHTML = `<h5>${emotionText}</h5>`
-            profileInfo_age.innerHTML = `<h5>${profileText}</h5>`
+            // profileInfo_age.innerHTML = `<h5>${profileText}</h5>`
+            profileInfo_userId.innerHTML = `<h5>${userId}</h5>`
             // profileInfo_features.innerHTML = `<h3>${features}</h3>`
 
             canvas.toBlob(function (blob) {
@@ -162,7 +165,8 @@ function getEmotion(type) {
         }
         else {
             profileInfo_emotion.innerHTML = `<h3>No Face</h3>`
-            profileInfo_age.innerHTML = ``
+            // profileInfo_age.innerHTML = ``
+            profileInfo_userId.innerHTML = ``
             // profileInfo_features.innerHTML = ""
         }
     };
@@ -192,7 +196,7 @@ function getEmotion(type) {
     });
 }
 
-function createUser(userId, gender, emotion) {
+function createUser(id, gender, emotion) {
     const url = "createUser";
     const xhr = new XMLHttpRequest();
 
@@ -206,7 +210,7 @@ function createUser(userId, gender, emotion) {
     };
 
     let requestObj = {
-        "userId": userId,
+        "userId": id,
         "gender": gender,
         "emotion": emotion,
     };
@@ -241,7 +245,8 @@ function drawGallery(emotionValue, gender, id) {
             }
             else {
                 profileInfo_emotion.innerHTML = `<h3>No Image</h3>`;
-                profileInfo_age.innerHTML = ``
+                // profileInfo_age.innerHTML = ``
+                profileInfo_userId.innerHTML = ``
 
                 previewUrl = [];
                 previewlist = [];

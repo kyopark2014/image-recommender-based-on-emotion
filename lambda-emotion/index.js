@@ -105,9 +105,54 @@ exports.handler = async (event, context) => {
             else if (middleAge <= 64) generation = 'middle-age'; // 장년
             else if (middleAge >= 65) generation = 'elder'; // 노년
 
-            // console.log('**finish emotion detection');
+            // search the face for identification
+            let faceId;
+            try {
+                const searchFacesByImageParams = {
+                    CollectionId: collectionId,
+                    FaceMatchThreshold: 80, //default
+                    Image: {
+                        S3Object: {
+                            Bucket: bucketName,
+                            Name: fileName
+                        },
+                    },
+                };
+                // console.log('rekognitionParams = '+JSON.stringify(searchFacesByImageParams))
+                const data = await rekognition.searchFacesByImage(searchFacesByImageParams).promise();
+                console.log('data: '+JSON.stringify(data));
+
+                if(!data['FaceMatches'].length) {  // if no matched face
+                    try {
+                        const indexFacesParams = {
+                            CollectionId: collectionId,
+                            Image: {
+                                S3Object: {
+                                    Bucket: bucketName,
+                                    Name: fileName
+                                },
+                            },
+                        };
+                        // console.log('rekognitionParams = '+JSON.stringify(indexFacesParams))
+                        const data = await rekognition.indexFaces(indexFacesParams).promise();
+                        console.log('data: '+JSON.stringify(data));
+
+                        faceId = data['FaceRecords'][0]['Face'].FaceId;
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+                else { // if there is a matech image
+                    faceId = data['FaceMatches'][0]['Face'].FaceId;
+                    console.log('faceId: ', faceId);
+                }
+
+            } catch (err) {
+                console.log(err);
+            }
+
             const emotionInfo = {
-                id: userId,
+                id: faceId,
                 bucket: bucketName,
                 key: fileName,
                 ageRange: ageRange,
@@ -123,26 +168,6 @@ exports.handler = async (event, context) => {
                 generation: generation
             };
             console.info('emotionInfo: ' + JSON.stringify(emotionInfo));
-
-            try {
-                // collectionId
-                const searchFacesByImageParams = {
-                    CollectionId: collectionId,
-                    FaceMatchThreshold: 80, //default
-                    Image: {
-                        S3Object: {
-                            Bucket: bucketName,
-                            Name: fileName
-                        },
-                    },
-                };
-                // console.log('rekognitionParams = '+JSON.stringify(searchFacesByImageParams))
-                const data = await rekognition.searchFacesByImage(searchFacesByImageParams).promise();
-                console.log('data: '+JSON.stringify(data));
-
-            } catch (err) {
-                console.log(err);
-            }
 
             response = {
                 statusCode: 200,
@@ -167,6 +192,8 @@ exports.handler = async (event, context) => {
                 body: "No Face"
             };
         }
+
+        isCompleted = true;
     } catch (error) {
         console.log(error);
 

@@ -92,6 +92,7 @@ exports.handler = async (event, context) => {
 
                         response = {
                             statusCode: 200,
+                            msg: "created",
                             body: JSON.stringify({
                                 userId: userId,
                                 gender: gender,
@@ -108,6 +109,17 @@ exports.handler = async (event, context) => {
                     body: error
                 };
             }
+        }
+        else {
+            response = {
+                statusCode: 200,
+                msg: "existed",
+                body: JSON.stringify({
+                    userId: userId,
+                    gender: gender,
+                    emotion: emotion,
+                })
+            };
         }
     } catch (error) {
         console.log(error);
