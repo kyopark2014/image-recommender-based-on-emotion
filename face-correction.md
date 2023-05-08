@@ -11,7 +11,7 @@ const cfnCollection = new rekognition.CfnCollection(this, 'MyCfnCollection', {
 });
 ```
 
-## userId 찾기
+## 사용자(userId) 찾기
 
 [SearchFacesByImage](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html)를 이용하여 기존에 correction에 유사 이미지가 있는지 확인할 수 있습니다. [lambda-emotion](./lambda-emotion/index.js)에서는 아래와 같이 searchFacesByImage을 이용하여 매칭되는 얼굴 이미지를 찾습니다. 
 
