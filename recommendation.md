@@ -9,7 +9,7 @@ const aws = require('aws-sdk');
 const personalizeRuntime = new aws.PersonalizeRuntime();
 ```
 
-[lambda-gallery](./lambda-gallery/index.js)에서는 Personalize로 추론(inference)요청니다. 이때 [getRecommendations](https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)로 userId에 대한 추천 리스트를 가져옵니다.
+[lambda-gallery](./lambda-gallery/index.js)에서는 Personalize로 추론(inference)을 요청합니다. 이때 [getRecommendations](https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)로 userId에 대한 추천 리스트를 가져옵니다.
 
 ```java
 let userId = body['id'];
@@ -55,7 +55,7 @@ let response = {
 return response;
 ```    
 
-[gallery](./html/gallery.js)에서는 "감정 추천"과 "개인화 추천"을 제공합니다. "감정 추천"의 경우에는 성별과 김정의 조합으로 추천을 수행합니다. 또한 추천시 id기준으로 추천을 수행하는데 사용자의 감정에 맞는 추천을 하기 위해서 여기서는 사용자 아이디와 김정의 조합으로 추천을 수행합니다. 즉 사용자 한명의 감정은 8가지로 분류되므로 상호작용으로 모아지는 사용자 아이디는 사용자당 최대 8개까지 저장될 수 있습니다. 
+[gallery](./html/gallery.js)에서는 "감정 추천"과 "개인화 추천"을 제공합니다. "감정 추천"의 경우에는 성별과 김정의 조합으로 추천을 수행합니다. 또한 추천시에 id기준으로 추천을 수행하는데 사용자의 감정에 맞는 추천을 하기 위해서 여기서는 사용자 아이디와 김정의 조합으로 추천을 수행합니다. 즉 사용자 한 명의 감정은 8가지로 분류되므로 상호작용으로 모아지는 사용자 아이디는 사용자당 최대 8개까지 저장될 수 있습니다. 
 
 ```java
 if(type == 'emotionbase') {
