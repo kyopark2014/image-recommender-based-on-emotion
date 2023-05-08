@@ -43,7 +43,7 @@ Dataset Generator는 [datasetGenerator.js](./html/datasetGenerator.js)와 같이
 
 ## Solution / Campaign 생성
 
-[Dataset groups Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여 "image-recommender-dataset"로 접속하여 왼쪽 메뉴의 [Datasets] - [Data analysis]을 선택한 후에 [Run analysis]을 선택하여 분석합니다. 분석 결과(Insights)에서 User의 숫자가 25이하, interaction이 1000이하로 알림이 발생하면, Personalize에서 입력한 데이터가 분석중이므로 수분 정도 대기한 후에 재시도 합니다.
+[Dataset groups Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)로 접속하여 "image-recommender-dataset"로 접속하여 왼쪽 메뉴의 [Datasets] - [Data analysis]을 선택한 후에 [Run analysis]을 선택하여 분석합니다. 분석 결과(Insights)에서 User의 숫자가 25이하, interaction이 1000이하로 알림이 발생하면, Personalize에서 입력한 데이터가 분석중임으로 수분 정도 대기한 후에 재시도 합니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/236587998-9eb43e7d-8a70-405b-a375-0e5cd4443f69.png)
 
