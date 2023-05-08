@@ -12,11 +12,13 @@
 
 전체적인 신호 흐름도(signal flow)는 아래를 참조합니다.
 
-1) 감성(emotion)이미지는 미리 SageMaker JumpStart의 Stable Diffusion 모델로 [Amazon S3](https://aws.amazon.com/ko/s3/)의 이미지풀에 저장되어 있다고 가정합니다. 시스템 관리자(administrator)는 감성(emotion)에 맞게 생성된 이미지를 /imgPool에서 /emotion으로 이동합니다. 
-2) 복사된 이미지의 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)가 실행되면서 personalize에 putItem으로 아이템 데이터셋을 생성합니다.
-3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감성(emotion)을 분석합니다. 이후 [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 만약 얼굴 분석 결과를 저장하는 [Personalize의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 등록되지 않은 얼굴(Face) 이미지가 있을 경우에는 새로운 사용자 아이디(userId)로 생성합니다.
-4) 사용자 아이디(userId)를 이용하여 [Personalize의 getRecommendations](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_RS_GetRecommendations.html)을 이용하여 "감성 추천" 및 "개인화 추천"을 이용합니다. 
-5) 사용자가 감성 이미지를 선택하는 경우에 상호작용(interaction)을 [Personalize의 putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)을 이용하여 저장하여, 상호작용 데이터셋을 생성합니다. 
+1) 시스템 관리자(administrator)는 감성(emotion)에 맞게 생성된 이미지를 S3 bucket의 /emotion폴더로 복사합니다. 
+2) 이미지가 S3 Bucket에 복사되면서 발생한 [S3 put event](https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/NotificationHowTo.html)를 이용하여 [aws lambda](https://aws.amazon.com/ko/lambda/)를 통해 FIFO 형태의 SQS에 저장합니다. 이후 Lambda를 이용하여 순차적으로 꺼내서 personalize에 putItem으로 전달하여 아이템 데이터셋을 생성합니다.
+3) 사용자가 카메라 앞에 있을때에 [Personalize의 detectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)를 이용해서 감성(emotion)을 분석합니다. 
+4) [Personalize의 searchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html)을 이용하여 사용자 아이디(userId)를 확인합니다. 기존에 등록된 얼굴 정보가 없는 경우에는 [rekognition의 Correction](https://docs.aws.amazon.com/rekognition/latest/dg/collections.html)에 신규로 등록합니다. 
+5) 사용자는 Rekognition으로 부터 전달받은 userId, emotion이 처음으로 생성되었는지를 DynamoDB를 조회를 통해 확인하여, 신규인 경우에는 Personalize에 putUsers를 이용하여 전달하여 사용자 데이터셋을 업데이트합니다.
+6) 사용자는 [Personalize의 getRecommendations](https://docs.aws.amazon.com/ko_kr/personalize/latest/dg/API_RS_GetRecommendations.html)을 이용하여 "감성 추천" 및 "개인화 추천"을 이용합니다. 
+9) 사용자가 감성 이미지를 선택하는 경우에 상호작용(interaction)을 [Personalize의 putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)을 이용하여 저장하여, 상호작용 데이터셋을 생성합니다. 
 
 ![sequence](https://user-images.githubusercontent.com/52392004/236805345-c56801a4-dc53-457d-b1f7-200db0edb02d.png)
 
