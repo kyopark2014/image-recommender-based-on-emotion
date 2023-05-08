@@ -1,6 +1,6 @@
 # Personalize의 Item 정보 수집
 
-감정 추천에 사용되는 이미지들은 Stable Diffusion과 같이 머신러닝을 통해 생성할 수도 있고, 다른 방법으로 수집된 이미지를 이용할 수 있습니다. 따라서, 여기에서는 이미지들이 S3에 저장될때 발생하는 put event를 이용하여 Item 정보를 수집합니다. 
+이미지들이 S3에 저장될때 발생하는 put event를 이용하여 Item 정보를 수집합니다. 
 
 ## 아이템(Item) Metadata
 
