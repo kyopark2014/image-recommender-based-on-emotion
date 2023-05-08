@@ -1,10 +1,10 @@
 # Personalize의 상호작용(interaction) 정보 수집
 
-사용자의 event를 상호작용(interaction)으로 등록하여 개인화 추천에 사용합니다.
+사용자의 event를 상호작용(interaction)로 등록하여 개인화 추천에 사용합니다.
 
 ## 상호작용(interaction) Metadata
 
-Personalize의 상호작용(interaction)에 대한 메타 정보는 USER_ID, ITEM_ID, TIMESTAMP, EVENT_TYPE, IMPRESSION으로 구성됩니다. 
+Personalize의 상호작용(interaction)에 대한 메타 정보는 USER_ID, ITEM_ID, TIMESTAMP, EVENT_TYPE, IMPRESSION로 구성됩니다. 
 
 ```java
 {
@@ -39,7 +39,7 @@ Personalize의 상호작용(interaction)에 대한 메타 정보는 USER_ID, ITE
 
 ## 상호작용 정보의 수집
 
-[lambda-like](./lambda-like/index.js)에서는 Personalize의 상호작용(interaction) 정보를 등록합니다. 등록할때에는 [putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)를 사용합니다. 
+[lambda-like](./lambda-like/index.js)에서는 Personalize의 상호작용(interaction) 정보를 등록합니다. 등록할 때에는 [putEvents](https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)를 사용합니다. 
 
 ```java
 let params = {            
