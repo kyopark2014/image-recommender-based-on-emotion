@@ -37,7 +37,7 @@ Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset
 
 ![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
 
-Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 김정(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
+Dataset Generator는 [datasetGenerator.js](../html/datasetGenerator.js)와 같이 userId를 `${gender}/${emotions[i]}`와 같이 성별(gender)과 감정(emotion)에 따라 [lambda-generate-dataset](./utils/lambda-generate-dataset/index.js)을 호출합니다. lambda-generate-dataset은 DynamoDB에 있는 item 데이터를 이용하여 interaction 데이터셋을 생성합니다.
 
 
 ## Solution / Campaign 생성
