@@ -14,7 +14,7 @@ import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import * as lambdaEventSources from 'aws-cdk-lib/aws-lambda-event-sources';
 import * as personalize from 'aws-cdk-lib/aws-personalize';
-import { aws_rekognition as rekognition } from 'aws-cdk-lib';
+import * as rekognition from 'aws-cdk-lib/aws-rekognition';
 
 const debug = false;
 const stage = "dev";
