@@ -33,6 +33,5 @@ aws s3 cp ./imgPool/ s3://[Bucket]/emotions/ --recursive
 
 원활한 실습을 위해 Sample 이미지를 활용할 수 있습니다.
 ```java
-cd .. && unzip samples.zip
-aws s3 cp ../samples/emotions/ s3://[Bucket]/emotions/ --recursive
+cd .. && unzip samples.zip && aws s3 cp ./samples/emotions/ s3://[Bucket]/emotions/ --recursive
 ```
