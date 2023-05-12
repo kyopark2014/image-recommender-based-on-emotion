@@ -18,4 +18,4 @@
 
 5) Endpoint의 이름을 확인합니다.
 
-[SageMaker Endpoint](https://ap-northeast-1.console.aws.amazon.com/sagemaker/home?region=ap-northeast-1#/endpoints)로 접속하여 생성된 SageMaker Endpoint의 이름을 확인합니다. 여기서는 "jumpstart-example-model-txt2img-stabili-2023-04-22-16-31-10-149"라는 Endpoint가 생성되었습니다.
+노트북이 실행이 완료되면, [SageMaker Endpoint](https://ap-northeast-1.console.aws.amazon.com/sagemaker/home?region=ap-northeast-1#/endpoints)로 접속하여 생성된 SageMaker Endpoint의 이름을 확인합니다. 여기서는 "jumpstart-example-model-txt2img-stabili-2023-04-22-16-31-10-149"라는 Endpoint가 생성되었습니다.
