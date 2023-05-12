@@ -49,25 +49,24 @@ cdk deploy
 
 실행이 되면 아래와 같이 Output을 확인할 수 있습니다.
 
-![image](https://user-images.githubusercontent.com/52392004/235280195-66f9f76a-cbfb-4f72-812b-229f3cf284b1.png)
+![image](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/00c7a003-df49-47ad-af8c-aefa4f36fde6)
 
 ```java
 Outputs:
-CdkImageRecommenderStack.CopyCommend = aws s3 cp ../data/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
-CdkImageRecommenderStack.Enabler = https://d2nnqu1h4mrgxo.cloudfront.net/enabler.html
-CdkImageRecommenderStack.Gallery = https://d2nnqu1h4mrgxo.cloudfront.net/gallery.html
-CdkImageRecommenderStack.ImageGenerator = https://d2nnqu1h4mrgxo.cloudfront.net/imgGenerator.html
-CdkImageRecommenderStack.Preview = https://d2nnqu1h4mrgxo.cloudfront.net/preview.html
-CdkImageRecommenderStack.apiUrlimagerecommender = https://auor8rwkm7.execute-api.ap-northeast-2.amazonaws.com/dev/
-CdkImageRecommenderStack.apiimagerecommenderEndpointBCEFCEF0 = https://auor8rwkm7.execute-api.ap-northeast-2.amazonaws.com/dev/
-CdkImageRecommenderStack.distributionDomainNameimagerecommender = d2nnqu1h4mrgxo.cloudfront.net
-CdkImageRecommenderStack.galleryWebUrl = https://d2nnqu1h4mrgxo.cloudfront.net/gallery.html
+CdkImageRecommenderStack.CopyHtml = aws s3 cp ../html/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
+CdkImageRecommenderStack.CopySample = aws s3 cp ../samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
+CdkImageRecommenderStack.DatasetGenerator = https://dm9gxreroczq5.cloudfront.net/datasetGenerator.html
+CdkImageRecommenderStack.Enabler = https://dm9gxreroczq5.cloudfront.net/enabler.html
+CdkImageRecommenderStack.Gallery = https://dm9gxreroczq5.cloudfront.net/gallery.html
+CdkImageRecommenderStack.ImageGenerator = https://dm9gxreroczq5.cloudfront.net/imgGenerator.html
+CdkImageRecommenderStack.Preview = https://dm9gxreroczq5.cloudfront.net/preview.html
+CdkImageRecommenderStack.apiimagerecommenderEndpointBCEFCEF0 = https://pr3g5pcf43.execute-api.ap-northeast-2.amazonaws.com/dev/
 ```
 
 여기서, "CopyCommend"을 터미널에서 실행하여 html로 만든 툴들을 복사합니다.
 
 ```java
-aws s3 cp ../data/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1t32yos4phxfc/ --recursive
+aws s3 cp ../html/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
 ```
 
 
