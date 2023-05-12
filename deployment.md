@@ -49,12 +49,12 @@ cdk deploy
 
 실행이 되면 아래와 같이 Output을 확인할 수 있습니다.
 
-![image](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/00c7a003-df49-47ad-af8c-aefa4f36fde6)
+![image](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/52d71f41-7440-4261-9183-bdbba1e32a6a)
 
 ```java
 Outputs:
 CdkImageRecommenderStack.CopyHtml = aws s3 cp ../html/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
-CdkImageRecommenderStack.CopySample = aws s3 cp ../samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
+CdkImageRecommenderStack.CopySample = cd .. && unzip samples.zip && aws s3 cp ./samples/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
 CdkImageRecommenderStack.DatasetGenerator = https://dm9gxreroczq5.cloudfront.net/datasetGenerator.html
 CdkImageRecommenderStack.Enabler = https://dm9gxreroczq5.cloudfront.net/enabler.html
 CdkImageRecommenderStack.Gallery = https://dm9gxreroczq5.cloudfront.net/gallery.html
