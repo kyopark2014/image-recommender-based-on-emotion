@@ -19,7 +19,7 @@ import * as rekognition from 'aws-cdk-lib/aws-rekognition';
 const debug = false;
 const stage = "dev";
 const endpoints = [
-  "jumpstart-example-model-txt2img-stabili-2023-04-29-02-00-20-092",
+  "jumpstart-example-model-txt2img-stabili-2023-05-12-22-15-07-602",
 ]
 const nproc = 1;
 const trackingId = "c611bf0f-0315-4db9-a418-5c40e3f7fe7d";
