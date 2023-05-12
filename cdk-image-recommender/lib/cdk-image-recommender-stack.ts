@@ -73,10 +73,12 @@ export class CdkImageRecommenderStack extends cdk.Stack {
     const cfnCollection = new rekognition.CfnCollection(this, 'MyCfnCollection', {
       collectionId: collectionId,
     });
-    new cdk.CfnOutput(this, 'Collection-attrArn', {
-      value: cfnCollection.attrArn,
-      description: 'The arn of correction in Rekognition',
-    }); 
+    if (debug) {
+      new cdk.CfnOutput(this, 'Collection-attrArn', {
+        value: cfnCollection.attrArn,
+        description: 'The arn of correction in Rekognition',
+      }); 
+    }
 
     // API Gateway
     const role = new iam.Role(this, "api-role-image-recommender", {
@@ -945,9 +947,11 @@ export class CdkImageRecommenderStack extends cdk.Stack {
       description: 'url of enabler',
     });     
 
-    new cdk.CfnOutput(this, 'ApiGatewayUrl', {
-      value: api.url,
-      description: 'The url of API Gateway',
-    }); 
+    if (debug) {
+      new cdk.CfnOutput(this, 'ApiGatewayUrl', {
+        value: api.url,
+        description: 'The url of API Gateway',
+      });
+    } 
   } 
 }
