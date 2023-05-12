@@ -97,7 +97,7 @@ form.elements.send.onclick = function () {
         alert("No prompt.");
     }
 
-    alert("이미지 생성이 요청되었습니다. 이미지 한장당 22초가 소요됩니다. 전체 생성 예상 시간은 "+(22*repeatCount*2)+"초 입니다. 이후에 [Update] 버튼을 선택하면 생성된 이미지를 볼 수 있습니다.");    
+    alert("이미지 생성이 요청되었습니다. 이미지 한장당 22초가 소요됩니다. 전체 생성 예상 시간은 "+(7*repeatCount)+"초 입니다. 이후에 [Update] 버튼을 선택하면 생성된 이미지를 볼 수 있습니다.");    
 };
 
 let like = true;
