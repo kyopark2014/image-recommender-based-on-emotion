@@ -19,10 +19,10 @@ Tracking ID 정보를 업데이트하여야 하므로, 다시 Cloud9의 왼쪽 �
 
 ![noname](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/09c14bb0-5646-434e-838e-b7a79ecafc89)
 
-이후 터미널에서 아래와 같이 재배포를 합니다.
+이후 터미널에서 아래와 같이 CDK folder로 이동하여 재배포를 합니다.
 
 ```java
-cdk deploy
+cd cdk-image-recommender/ && cdk deploy
 ```
 
 
@@ -38,7 +38,9 @@ Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 Dyna
 
 Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 
 
+```java
 aws s3 cp ../samples/ s3://[Bucket Name]/ --recursive
+```
 
 Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 이용하여 아래와 같이 접속 후에 [Generate]를 선택합니다.
 
