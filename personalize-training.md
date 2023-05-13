@@ -19,6 +19,12 @@ Tracking ID 정보를 업데이트하여야 하므로, 다시 Cloud9의 왼쪽 �
 
 ![noname](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/09c14bb0-5646-434e-838e-b7a79ecafc89)
 
+이후 터미널에서 아래와 같이 재배포를 합니다.
+
+```java
+cdk deploy
+```
+
 
 ## Personalize DataSet 준비
 
