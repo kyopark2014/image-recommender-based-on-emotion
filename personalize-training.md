@@ -15,9 +15,9 @@ Personalize에서 User와 Interaction 데이터를 수집하기 위해서는 Eve
 
 ![noname](https://user-images.githubusercontent.com/52392004/235289151-d19d0cc7-7e61-4acc-8faf-fde2083d9b16.png)
 
-[lambda-like Console](https://ap-northeast-2.console.aws.amazon.com/lambda/home?region=ap-northeast-2#/functions/lambda-like?tab=configure)의 [Configuration]으로 접속하여 아래와 같이 "trackingId"으로 "326c8489-2683-420c-b7eb-4ac44bde346d"임을 입력합니다. 
+Tracking ID 정보를 업데이트하여야 하므로, 다시 Cloud9의 왼쪽 메뉴에서 "emotion-gallery/cdk-emotion-gallery/cdk-emotion-gallery-stack.ts"을 오픈후에 아래와 같이 trackingId를 업데이트 합니다.
 
-![noname](https://user-images.githubusercontent.com/52392004/235289614-75af2fcd-5c52-491a-a47b-ffe4db8f7158.png)
+![noname](https://github.com/kyopark2014/image-recommender-based-on-emotion/assets/52392004/09c14bb0-5646-434e-838e-b7a79ecafc89)
 
 
 ## Personalize DataSet 준비
