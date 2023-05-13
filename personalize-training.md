@@ -36,12 +36,6 @@ Enabler를 이용하여 데이터를 수집할 수 있습니다. Enabler는 Dyna
 
 ### 준비된 데이터셋을 이용
 
-Output의 "CopySample" 명령어를 이용해 아래와 같이 Samples의 데이터를 복사합니다. 
-
-```java
-aws s3 cp ../samples/ s3://[Bucket Name]/ --recursive
-```
-
 Dataset Generator를 이용해 Personalize에 dataset을 push 합니다. Dataset Generator의 접속 위치는 Output의 "DatasetGenerator"을 이용하여 아래와 같이 접속 후에 [Generate]를 선택합니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/236651606-a6e41a37-526f-459a-9992-c2d153deb021.png)
