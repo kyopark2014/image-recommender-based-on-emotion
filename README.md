@@ -84,13 +84,15 @@
 
 ### 리소스 정리하기
 
-더이상 인프라를 사용하지 않는 경우에 아래처럼 모든 리소스를 삭제할 수 있습니다.
+더이상 인프라를 사용하지 않는 경우에 아래처럼 모든 리소스를 삭제할 수 있습니다. 먼저 [Personalize Console](https://ap-northeast-2.console.aws.amazon.com/personalize/home?region=ap-northeast-2#datasetGroups)에 접속하여, "image-recommender-dataset"을 선택하여 들어간 후에 좌측의 [Custom resouces]에서 Campaign과 Solution을 차례로 삭제합니다. 이후 [Event trackers]를 선택하여 "image-recommender-event-tracker"을 삭제합니다. 
+
+Cloud9의 터미널에 접속하여 아래와 같이 설치한 인프라들을 삭제합니다.
 
 ```java
 cdk destroy
 ```
 
-본 실습에서는 GPU를 사용하는 SageMaker Endpoint를 사용하므로 실습이 끝나고 반드시 삭제하여야 합니다. [SageMaker Models](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/models), [SageMaker Endpoints](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpoints), [SageMaker Endpoint configuration](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpointConfig)에서 생성했던model, endpoint, endpoint configuration을 모두 삭제합니다.
+또한, 본 실습에서는 GPU를 사용하는 SageMaker Endpoint를 사용하므로 실습이 끝나고 반드시 삭제하여야 합니다. [SageMaker Models](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/models), [SageMaker Endpoints](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpoints), [SageMaker Endpoint configuration](https://ap-northeast-2.console.aws.amazon.com/sagemaker/home?region=ap-northeast-2#/endpointConfig)에서 생성했던model, endpoint, endpoint configuration을 모두 삭제합니다.
 
 [Cloud9 console](https://ap-northeast-2.console.aws.amazon.com/cloud9control/home?region=ap-northeast-2#/)에서 배포에 사용되었던 Cloud9을 삭제합니다.
 
