@@ -1,7 +1,5 @@
-const cloudfrntUrl = "https://d14j04tdmh4c1d.cloudfront.net/";
-
-const removeUrl = cloudfrntUrl + "removePool";
-const gardenUrl = cloudfrntUrl + "retrieve";
+const removeUrl = "removePool";
+const gardenUrl = "retrieve";
 
 let profileInfo_emotion = document.getElementById('status');
 profileInfo_emotion.innerHTML = `<h3>Ready</h3>`;
@@ -152,7 +150,7 @@ form.elements.remove.onclick = function () {
     let dislike = [];
     for (let i = 0; i < nRow; i++) {
         if (!likeList[i] && !deletedList[i]) {
-            console.log(`${cloudfrntUrl + fileList[i]} will be removed.`);
+            console.log(`${fileList[i]} will be removed.`);
 
             dislike.push(fileList[i]);
 
@@ -178,7 +176,7 @@ form2.elements.remove2.onclick = function () {
     let dislike = [];
     for (let i = 0; i < nRow; i++) {
         if (!likeList[i] && !deletedList[i]) {
-            console.log(`${cloudfrntUrl + fileList[i]} will be removed.`);
+            console.log(`${fileList[i]} will be removed.`);
 
             dislike.push(fileList[i]);
 
@@ -219,7 +217,7 @@ function initiatePreview() {
                 console.log('like: ' + likeList[i] + ' filename: ' + fileList[i]);
 
                 // check validity
-                const url = cloudfrntUrl+fileList[i];
+                const url = fileList[i];
                 console.log('url: ', url);
 
                 checkFile(url, i);                
