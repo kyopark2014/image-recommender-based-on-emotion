@@ -77,7 +77,8 @@
 
 ### 실행하기
 
-웹 브라우저를 이용하여 Output의 "Gallery"의 URL로 접속하면 아래와 같은 이미지 추천을 이용할 수 있습니다. [Video] 버튼을 눌러서 video권한을 허용하면 Video화면을 볼 수 있습니다. "감정 추천"을 선택하면 "gender/emotion"으로 Personalize의 추천 추론을 수행하며, 해당되는 감정 이미지를 하단에서 3개씩 보여줍니다. [Next]를 통해 다음 순위의 추천이미지를 3개씩 볼 수 있습니다. "개인화 추천"을 선택하면 "userId/emotion"로 추천 추론의 결과를 얻습니다. 처음으로 "Gallery"를 실행하면 사용자에 대한 상호작용(interaction) 데이터가 없으므로 최신 아이템 순서대로 보여줍니다. "개인화 추천"이 정상적으로 동작하려면 "감정 추천"에서 하단의 Like에 해당하는 버튼을 클릭하여 상호작용 결과를 Personalize에 전달하여야 합니다. 
+웹 브라우저를 이용하여 Output의 "Gallery"의 URL로 접속하면 아래와 같은 이미지 추천을 이용할 수 있습니다. [Video] 버튼을 눌러서 video권한을 허용하면 Video화면을 볼 수 있습니다. "감정 추천"을 선택하면 "gender/emotion"로 Personalize의 추천 추론을 수행하며, 해당되는 감정 이미지를 하단에서 3개씩 보여줍니다. [Next]를 통해 다음 순위의 추천 이미지를 3개씩 볼 수 있습니다. 
+"개인화 추천"을 선택하면 "userId/emotion"로 추천 추론의 결과를 얻습니다. 처음에는 사용자에 대한 상호작용(interaction) 데이터가 없으므로 최신 아이템 순서대로 보여줍니다. 하지만, 하단의 Like에 해당하는 버튼을 클릭하여 상호작용 결과를 Personalize에 전달하면, 이후에는 개인화된 추천을 이용할 수 있습니다. Personalize는 상호작용에 대한 업데이트를 [2시간 간격으로 자동으로 반영](https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)하므로 Like 버튼을 10회이상 선택후 일정시간 이후에 개인화된 추천동작을 확인 할 수 있습니다. 
 
 ![noname](https://user-images.githubusercontent.com/52392004/236821778-076f6d9c-d338-442e-9ce5-b8c34b79b6ec.png)
 
