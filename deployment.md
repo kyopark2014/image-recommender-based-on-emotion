@@ -63,7 +63,7 @@ CdkImageRecommenderStack.Preview = https://dm9gxreroczq5.cloudfront.net/preview.
 CdkImageRecommenderStack.apiimagerecommenderEndpointBCEFCEF0 = https://pr3g5pcf43.execute-api.ap-northeast-2.amazonaws.com/dev/
 ```
 
-여기서, "CopyCommend"을 터미널에서 실행하여 html로 만든 툴들을 복사합니다.
+여기서, "CopyHtml"을 터미널에서 실행하여 html로 만든 툴들을 복사합니다.
 
 ```java
 aws s3 cp ../html/ s3://cdkimagerecommenderstack-imagerecommenderstorageb-1uqyuav3i92to/ --recursive
