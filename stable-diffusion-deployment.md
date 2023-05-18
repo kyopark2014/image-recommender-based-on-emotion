@@ -12,7 +12,7 @@
 
 ![noname](https://user-images.githubusercontent.com/52392004/235278373-d92c7c1e-998f-46a7-b8f6-b4d25b7e55b7.png)
 
-4) 상단 메뉴의 [Run] - [Run All Cells]를 선택하여 Stable Diffusion Endopoint를 생성합니다. 
+4) 상단 메뉴의 [Run] - [Run All Cells]를 선택하여 Stable Diffusion Endopoint를 생성합니다. 전체 생성에 약 15분이 소요됩니다.
 
 ![noname](https://user-images.githubusercontent.com/52392004/233796121-b504f965-3c82-4c6e-9904-a3d9fce6de81.png)
 
